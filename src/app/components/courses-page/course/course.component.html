@@ -1,0 +1,27 @@
+
+    <mat-expansion-panel *ngIf="course && course.lessons && course.lessons.length > 0" class="expansion-panel" [expanded]="true">
+        <mat-expansion-panel-header class="expansion-panel-header">
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="col">
+                    <h3>{{course.title}}</h3>
+                    <h5>{{course.description}}</h5>
+                  </div>
+                  <!-- <div class="col-md-1">
+                    <button class="btn btn-primary" (click)="buyCourse()">Kup</button>
+                  </div> -->
+                </div>
+              </div>
+              
+
+          </mat-expansion-panel-header>
+          <div class="container-fluid">
+            <div *ngFor="let lesson of course.lessons">
+                <app-lesson [lesson]="lesson"></app-lesson>
+            </div>
+          </div>
+    </mat-expansion-panel>
+
+    
+
+  

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms'; // Importujemy FormBuilder i inne potrzebne klasy
 import { AuthService } from '../auth.service';
+import { RegisterModel } from '../models/register.model';
 
 @Component({
   selector: 'app-register',
@@ -38,7 +39,7 @@ export class RegisterComponent {
     this.passwordMatchValidator(this.registrationForm);
   
     if (this.registrationForm.valid) {
-      const user = {
+      const user:RegisterModel = {
         username: this.registrationForm.value.username,
         password: this.registrationForm.value.password,
         email: this.registrationForm.value.email,
@@ -49,6 +50,7 @@ export class RegisterComponent {
       this.authService.register(user).subscribe(
         (response) => {
           console.log('Registration successful:', response);
+          this.authService.setToken(response.token)
         },
         (error) => {
           console.error('Registration error:', error);

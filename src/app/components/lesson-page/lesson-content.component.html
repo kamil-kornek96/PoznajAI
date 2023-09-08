@@ -1,0 +1,10 @@
+<mat-card class="lesson my-3">
+    <mat-card-header class="mb-3">
+        <div class="col-1 pointer" (click)="goBack()"><i class="fa fa-solid fa-arrow-left fa-2xs" aria-hidden="true"> </i></div>
+        <div [routerLink]="'/main-page/lesson/' + lesson?.id" class="col-9">{{ lesson?.title }}</div><div class="col-2">Czas trwania: {{ lesson?.duration }}</div>
+    </mat-card-header>
+    <mat-card-content *ngIf="isAdmin">
+        <quill-editor [formControl]="quillForm" [modules]="editorConfig" style="background-color: white; color:black" (onEditorCreated)="test()"></quill-editor>
+      </mat-card-content>
+      <button (click)="test()">test</button>
+  </mat-card>

@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-
+@import 'assets/quill.bubble.css';
+@import 'assets/quill.snow.css';
+@import 'assets/quill.core.css';
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
 
 html, body { height: 100%;background-color: #333; color:white;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.pointer {
+    cursor: pointer;
+}

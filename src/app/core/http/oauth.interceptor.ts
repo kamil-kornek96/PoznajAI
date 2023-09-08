@@ -6,16 +6,20 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  authService: AuthService;
+  constructor(authService: AuthService) {
+    this.authService = authService;
+  }
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const idToken = sessionStorage.getItem('token');
+    const idToken = this.authService.getToken();
 
     // Jeśli jest token, dodaj też nagłówek autoryzacji
     if (idToken) {

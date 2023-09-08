@@ -1,0 +1,5 @@
+<mat-card [routerLink]="'/main-page/lesson/' + lesson.id" class="lesson my-3">
+    <mat-card-header class="mb-3">
+        <div [routerLink]="'/main-page/lesson/' + lesson.id" class="col-10">{{ lesson.title }}</div><div class="col-2"><strong>Czas trwania:</strong> {{ lesson.duration }}</div>
+    </mat-card-header>
+  </mat-card>

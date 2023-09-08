@@ -2,11 +2,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './core/auth/login/login.component';
 import { RegisterComponent } from './core/auth/register/register.component';
+import { AuthGuardLoggedIn } from './core/auth/auth-logged-in.guard';
+import { AuthGuardNotLoggedIn } from './core/auth/auth-not-logged-in.guard';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { CoursesPageComponent } from './components/courses-page/courses-page.component';
+import { LessonContentComponent } from './components/lesson-page/lesson-content.component';
 
 const routes: Routes = [
-  { path: 'home', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Domyślna trasa
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuardNotLoggedIn] },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuardNotLoggedIn] },
+  {
+    path: 'main-page',
+    component: MainPageComponent,
+    canActivate: [AuthGuardLoggedIn],
+    children: [
+      { path: '', redirectTo: 'course-page', pathMatch: 'full' }, // Domyślna trasa
+      { path: 'course-page', component: CoursesPageComponent },
+      { path: 'lesson/:id', component: LessonContentComponent },
+    ]
+  },
+  { path: '', redirectTo: '/main-page', pathMatch: 'full' },
 ];
 
 @NgModule({
