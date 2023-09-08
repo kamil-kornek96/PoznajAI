@@ -4,7 +4,7 @@ import { QuillModules } from 'ngx-quill';
 import * as hljs from 'highlight.js';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { LessonDetailsModel } from './models/lesson-details.model';
-import { LessonPageService } from '../services/lesson-page.service';
+import { LessonService } from '../services/lesson.service';
 import { Location } from '@angular/common';
 import { FormControl } from '@angular/forms';
 
@@ -36,7 +36,7 @@ export class LessonContentComponent {
 
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
-              private lessonPageService: LessonPageService,
+              private lessonPageService: LessonService,
               private location: Location) {
     
     this.lessonId = this.route.snapshot.paramMap.get('id');

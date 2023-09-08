@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './core/http/oauth.interceptor';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
@@ -26,6 +28,9 @@ import { LessonComponent } from './components/courses-page/lesson/lesson.compone
 import { LessonContentComponent } from './components/lesson-page/lesson-content.component';
 import { QuillModule } from 'ngx-quill';
 import { QuillConfigModule } from 'ngx-quill/config';
+import { CourseNotOwnedComponent } from './components/courses-page/course-not-owned/course-not-owned.component';
+import { CoursesEditPageComponent } from './components/courses-edit-page/courses-edit-page.component';
+import { LessonCreatePageComponent } from './components/lesson-create-page/lesson-create-page.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +43,9 @@ import { QuillConfigModule } from 'ngx-quill/config';
     CourseComponent,
     LessonComponent,
     LessonContentComponent,
+    CourseNotOwnedComponent,
+    CoursesEditPageComponent,
+    LessonCreatePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +59,8 @@ import { QuillConfigModule } from 'ngx-quill/config';
     MatCardModule,
     ReactiveFormsModule,
     MatExpansionModule,
+    FontAwesomeModule,
+    ToastrModule.forRoot(),
     QuillModule.forRoot(),
     QuillConfigModule.forRoot({
       modules: {

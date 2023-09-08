@@ -7,6 +7,7 @@ import { AuthGuardNotLoggedIn } from './core/auth/auth-not-logged-in.guard';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { CoursesPageComponent } from './components/courses-page/courses-page.component';
 import { LessonContentComponent } from './components/lesson-page/lesson-content.component';
+import { CoursesEditPageComponent } from './components/courses-edit-page/courses-edit-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuardNotLoggedIn] },
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'course-page', pathMatch: 'full' }, // Domyślna trasa
       { path: 'course-page', component: CoursesPageComponent },
       { path: 'lesson/:id', component: LessonContentComponent },
+      { path: 'edit-course/:id', component: CoursesEditPageComponent },
     ]
   },
   { path: '', redirectTo: '/main-page', pathMatch: 'full' },

@@ -12,12 +12,10 @@ export class CourseComponent {
   @Input() authService: any;
   @Input() course: CourseModel | undefined;
   @Input() owned: boolean | undefined;
+  
 
 
   constructor() {
   }
 
-  buyCourse() {
-    // Logika zakupu kursu
-  }
 }

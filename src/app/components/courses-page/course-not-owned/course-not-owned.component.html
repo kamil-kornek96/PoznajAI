@@ -1,0 +1,29 @@
+<mat-card *ngIf="course" class="expansion-panel my-2 py-3">
+    <mat-card-header class="expansion-panel-header">
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-9">
+                <h3>{{course.title}} <i (click)="editCourse()" class="fa fa-solid fa-pencil fa-2xs" aria-hidden="true"> </i></h3>
+                <h5>{{course.description}}</h5>
+                
+              </div>
+              <div class="col-3">
+                <mat-card class="group-button-card">
+                    <mat-card-content>
+                        <h6 class="m-0 p-0">Moduł dostępny w pakiecie Programista</h6>
+                        <h5>Kup pakiet</h5>
+                    </mat-card-content>
+              </mat-card>
+            </div>
+              <!-- <div class="col-md-1">
+                <button class="btn btn-primary" (click)="buyCourse()">Kup</button>
+              </div> -->
+            </div>
+          </div>
+          
+
+      </mat-card-header>
+</mat-card>
+
+
+

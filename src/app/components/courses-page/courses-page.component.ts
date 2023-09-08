@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { CoursePageService } from '../services/course-page.service';
+import { CourseService } from '../services/course.service';
 import { CourseResponseModel } from './models/course-response.model';
 
 @Component({
@@ -11,12 +11,12 @@ import { CourseResponseModel } from './models/course-response.model';
 export class CoursesPageComponent {
     public authservice: AuthService;
     public userCourses: CourseResponseModel | undefined;
-    constructor (private auth: AuthService,private coursePageService: CoursePageService){
+    constructor (private auth: AuthService,private CourseService: CourseService){
       this.authservice=auth;
     }
 
     ngOnInit(){
-      this.coursePageService.getUserCourses().subscribe(response => {
+      this.CourseService.getUserCourses().subscribe(response => {
         this.userCourses = response;
       })
     }

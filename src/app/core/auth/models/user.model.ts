@@ -6,17 +6,7 @@ export interface UserModel {
     email: string;
     firstName: string;
     lastName: string;
-    roles: Role[];
+    isAdmin: boolean;
   }
   
-  export enum UserRole {
-    User = 0,
-    // Dodaj inne role, jeśli są dostępne
-  }
-  
-  export interface Role {
-    id: number;
-    name: UserRole;
-    userId: number;
-  }
   
