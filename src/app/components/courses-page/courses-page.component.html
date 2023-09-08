@@ -1,6 +1,11 @@
 <div class="mt-4">
     <div *ngFor="let course of userCourses?.ownedCourses">
-        <app-course [course]="course" [authService]="authservice"></app-course>
+        <app-course [owned]="true" [course]="course" [authService]="authservice"></app-course>
+    </div>
+
+    <div *ngFor="let course of userCourses?.allCourses">
+test
+        <app-course [owned]="true" [course]="course" [authService]="authservice"></app-course>
     </div>
     
 </div>

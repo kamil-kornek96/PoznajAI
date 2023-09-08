@@ -11,6 +11,7 @@ import { CourseModel } from '../models/course.model';
 export class CourseComponent {
   @Input() authService: any;
   @Input() course: CourseModel | undefined;
+  @Input() owned: boolean | undefined;
 
 
   constructor() {
