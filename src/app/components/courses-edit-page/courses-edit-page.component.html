@@ -1,5 +1,5 @@
-<div *ngIf="course">
-    <h2>Edit Course</h2>
+<div>
+    <h2>{{ isCreatingCourse ? 'Create Course' : 'Edit Course' }} <fa-icon (click)="goBack()" [icon]="faArrowLeft"></fa-icon></h2>
     <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="title">Title:</label>
@@ -23,11 +23,9 @@
       </div>
       <!-- Add more form fields for other course properties -->
   
-      <button type="submit" class="btn btn-primary">Update Course</button>
+      <button type="submit" class="btn btn-primary">
+        {{ isCreatingCourse ? 'Create Course' : 'Update Course' }}
+      </button>
     </form>
-<div class="mt-2">
-    <app-lesson-create-page [courseId]="course.id"></app-lesson-create-page>
-</div>
-
   </div>
   

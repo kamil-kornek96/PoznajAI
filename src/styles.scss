@@ -8,6 +8,28 @@
 html, body { height: 100%;background-color: #333; color:white;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.pointer {
+.pointer, .ng-fa-icon {
     cursor: pointer;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.384); 
+    border-radius: 5px;
+    margin: 5px 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(113, 101, 121, 0.534); 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(162, 155, 167, 0.534);  
+  }

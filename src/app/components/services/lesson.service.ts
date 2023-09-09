@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CourseResponseModel } from '../courses-page/models/course-response.model';
 import { environment } from 'src/environments/environment';
 import { LessonDetailsModel } from '../lesson-page/models/lesson-details.model';
-import { LessonCreateModel } from '../lesson-create-page/models/lesson-create.model';
+import { LessonCreateModel } from '../lesson-edit-page/models/lesson-create.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,10 @@ export class LessonService {
 
   createLesson(lessonData: LessonCreateModel): Observable<any> {
     return this.http.post(`${this.apiUrl}/Lesson/create`, lessonData);
+  }
+
+  updateLesson(lessonData: LessonCreateModel): Observable<any> {
+    return this.http.put(`${this.apiUrl}/Lesson`, lessonData);
   }
 
 }

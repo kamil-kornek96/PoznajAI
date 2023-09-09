@@ -1,7 +1,9 @@
-.red{
-    border: 1px solid red;
-}
 
 .container-fluid, .row {
+    height: 100%;
+}
+
+.main {
+    overflow-y: auto;
     height: 100%;
 }

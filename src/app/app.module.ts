@@ -30,7 +30,7 @@ import { QuillModule } from 'ngx-quill';
 import { QuillConfigModule } from 'ngx-quill/config';
 import { CourseNotOwnedComponent } from './components/courses-page/course-not-owned/course-not-owned.component';
 import { CoursesEditPageComponent } from './components/courses-edit-page/courses-edit-page.component';
-import { LessonCreatePageComponent } from './components/lesson-create-page/lesson-create-page.component';
+import { LessonEditPageComponent } from './components/lesson-edit-page/lesson-edit-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import { LessonCreatePageComponent } from './components/lesson-create-page/lesso
     LessonContentComponent,
     CourseNotOwnedComponent,
     CoursesEditPageComponent,
-    LessonCreatePageComponent,
+    LessonEditPageComponent,
   ],
   imports: [
     BrowserModule,
