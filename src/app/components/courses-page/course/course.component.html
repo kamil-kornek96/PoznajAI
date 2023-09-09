@@ -20,7 +20,7 @@
                 <app-lesson [owned]="true" [lesson]="lesson"></app-lesson>
             </div>
           </div>
-          <div *ngIf="authService.loggedUser.isAdmin" class="container-fluid">
+          <div *ngIf="authService.loggedUser?.isAdmin" class="container-fluid">
             <div>
               <mat-card class="lesson my-3" (click)="createLesson()">
                 <mat-card-content>

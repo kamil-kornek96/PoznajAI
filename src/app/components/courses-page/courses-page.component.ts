@@ -12,16 +12,13 @@ import { Router } from '@angular/router';
 })
 export class CoursesPageComponent {
     faPlus = faPlus;
-    public authService: AuthService;
     public userCourses: CourseResponseModel | undefined;
     constructor (
-      private auth: AuthService,
+      public authService: AuthService,
       private CourseService: CourseService,
       private router: Router
       )
-    {
-      this.authService=auth;
-    }
+    {}
 
     ngOnInit(){
       this.CourseService.getUserCourses().subscribe(response => {

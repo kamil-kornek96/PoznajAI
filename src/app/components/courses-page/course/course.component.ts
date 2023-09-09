@@ -11,14 +11,13 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons';
 })
 
 export class CourseComponent {
-  @Input() authService: any;
   @Input() course: CourseModel | undefined;
   @Input() owned: boolean | undefined;
   faPencil = faPencil;
   
 
 
-  constructor(private router:Router) {
+  constructor(private router:Router,public authService: AuthService) {
   }
 
   editCourse(){

@@ -28,7 +28,7 @@
             </div>
         </div>
       </div>
-      <div *ngIf="authService.loggedUser.isAdmin" class="container-fluid">
+      <div *ngIf="authService.loggedUser?.isAdmin" class="container-fluid">
         <div class="mx-4">
             <mat-card class="lesson mt-3" (click)="createLesson()">
                 <mat-card-content>

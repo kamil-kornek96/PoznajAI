@@ -66,9 +66,10 @@ export class LessonEditPageComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log('t')
     if (this.lessonForm.valid) {
       const lessonData = this.lessonForm.value;
-
+      console.log(lessonData)
       if (this.isCreatingLesson) {
         console.log(lessonData);
         this.lessonService.createLesson(lessonData).subscribe(

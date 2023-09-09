@@ -11,13 +11,13 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons';
 })
 
 export class CourseNotOwnedComponent {
-  @Input() authService: any;
   @Input() course: CourseModel | undefined;
   @Input() owned: boolean | undefined;
   faPencil = faPencil;
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public authService: AuthService) {
+    console.log(this.authService.loggedUser?.isAdmin)
   }
 
 
