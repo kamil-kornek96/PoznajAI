@@ -6,4 +6,5 @@ export interface LessonDetailsModel {
     isGptActive: boolean;
     title: string;
     video: string;
+    videoFile: any;
   }

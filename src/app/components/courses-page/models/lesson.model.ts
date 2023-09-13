@@ -6,4 +6,5 @@ export interface LessonModel {
     isGptActive: boolean;
     title: string;
     video: string;
+    show: boolean;
   }

@@ -20,8 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const idToken = this.authService.getToken();
-
-    // Jeśli jest token, dodaj też nagłówek autoryzacji
+    console.log(idToken)
     if (idToken) {
       const cloned = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + idToken)

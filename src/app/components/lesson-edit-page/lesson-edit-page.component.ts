@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LessonService } from '../services/lesson.service';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { LessonCreateModel } from './models/lesson-create.model';
+import { environment } from 'src/environments/environment';
+import { QuillModules } from 'ngx-quill';
 
 @Component({
   selector: 'app-lesson-edit-page',
@@ -18,6 +21,32 @@ export class LessonEditPageComponent implements OnInit {
   isCreatingLesson: boolean = true; // Dodaj zmienną, która będzie określać, czy tworzysz lekcję czy edytujesz
   lessonId: string | undefined;
   courseId: string | undefined;
+  videoUrl: string | undefined;
+  apiUrl: string = environment.apiUrl;
+  editorConfig: QuillModules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+  
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+  
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+  
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+  
+      ['clean'],                                         // remove formatting button
+  
+      ['link', 'image', 'video']  
+    ],
+  };
+  public quillForm: FormControl;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +60,7 @@ export class LessonEditPageComponent implements OnInit {
     if (!this.authService.loggedUser?.isAdmin) {
       this.router.navigate(['/main-page/course-page']); // Tylko Admin
     }
-
+    this.quillForm = new FormControl()
     this.lessonForm = this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
@@ -42,6 +71,8 @@ export class LessonEditPageComponent implements OnInit {
       courseId: ['']
     });
   }
+
+  
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -55,6 +86,8 @@ export class LessonEditPageComponent implements OnInit {
         this.lessonService.getLessonById(lessonId).subscribe((data) => {
             console.log(data)
            this.lessonForm.patchValue(data);
+           this.videoUrl = this.apiUrl + '/' +data.video;
+           this.quillForm.setValue(data.content);
          });
       }
 
@@ -63,15 +96,27 @@ export class LessonEditPageComponent implements OnInit {
         this.lessonForm.patchValue({ courseId: courseId }); // Wypełnij pole courseId w formularzu
       }
     });
+
+    this.quillForm.valueChanges.subscribe((newQuillValue) => {
+      console.log(newQuillValue)
+      this.lessonForm.patchValue({ content: newQuillValue });
+    });
+  
   }
+
+  handleFileUploaded(fileName: string) {
+    // Tutaj możesz wykonać dowolną logikę po otrzymaniu nazwy przesłanego pliku
+    console.log(`Przesłano plik: ${fileName}`);
+    this.lessonForm.patchValue({ video: fileName });
+    this.videoUrl = this.apiUrl + '/' + fileName;
+  }
+
 
   onSubmit(): void {
     console.log('t')
     if (this.lessonForm.valid) {
       const lessonData = this.lessonForm.value;
-      console.log(lessonData)
       if (this.isCreatingLesson) {
-        console.log(lessonData);
         this.lessonService.createLesson(lessonData).subscribe(
           (response) => {
             console.log('Lesson created successfully', response);

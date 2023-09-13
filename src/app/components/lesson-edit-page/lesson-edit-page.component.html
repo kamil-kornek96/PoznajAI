@@ -12,13 +12,7 @@
       >
     </div>
     <div class="form-group">
-      <label for="content">Content:</label>
-      <textarea
-        id="content"
-        formControlName="content"
-        class="form-control"
-        required
-      ></textarea>
+      <quill-editor [formControl]="quillForm" [modules]="editorConfig" style="background-color: white; color:black"></quill-editor>
     </div>
     <div class="form-group">
       <label for="duration">Duration:</label>
@@ -29,15 +23,8 @@
         class="form-control"
       >
     </div>
-    <div class="form-group">
-      <label for="video">Video:</label>
-      <input
-        type="text"
-        id="video"
-        formControlName="video"
-        class="form-control"
-      >
-    </div>
+    <app-video-player [videoUrl]="this.videoUrl"></app-video-player>
+    <file-upload (fileUploaded)="handleFileUploaded($event)"></file-upload>
     <div class="form-group">
       <label for="isGptActive">Is GPT Active:</label>
       <input

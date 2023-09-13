@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row">
               <div class="col-9">
-                <h3>{{course.title}} <fa-icon (click)="editCourse()" [icon]="faPencil"></fa-icon></h3>
+                <h3>{{course.title}} <fa-icon (click)="editCourse()" [icon]="faPencil"></fa-icon>  <fa-icon (click)="deleteCourse()" [icon]="faXmark"></fa-icon></h3>
                 <h5 class="ms-2">{{course.description}}</h5>
                 
               </div>
@@ -24,7 +24,7 @@
       <div class="container-fluid">
         <div class="mx-4">
             <div *ngFor="let lesson of course.lessons">
-                <app-lesson [owned]="false" [lesson]="lesson"></app-lesson>
+                <app-lesson *ngIf="lesson.show" [owned]="false" [lesson]="lesson"></app-lesson>
             </div>
         </div>
       </div>

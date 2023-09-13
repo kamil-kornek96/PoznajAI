@@ -16,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './core/http/oauth.interceptor';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { MatIconModule } from '@angular/material/icon';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { RegisterComponent } from './core/auth/register/register.component';
@@ -31,6 +32,8 @@ import { QuillConfigModule } from 'ngx-quill/config';
 import { CourseNotOwnedComponent } from './components/courses-page/course-not-owned/course-not-owned.component';
 import { CoursesEditPageComponent } from './components/courses-edit-page/courses-edit-page.component';
 import { LessonEditPageComponent } from './components/lesson-edit-page/lesson-edit-page.component';
+import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
+import { VideoPlayerComponent } from './shared/components/video-player/video-player.component';
 
 @NgModule({
   declarations: [
@@ -46,9 +49,13 @@ import { LessonEditPageComponent } from './components/lesson-edit-page/lesson-ed
     CourseNotOwnedComponent,
     CoursesEditPageComponent,
     LessonEditPageComponent,
+    FileUploadComponent,
+    VideoPlayerComponent,
   ],
   imports: [
     BrowserModule,
+    MatProgressBarModule,
+    MatIconModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

@@ -7,6 +7,7 @@ import { LessonDetailsModel } from './models/lesson-details.model';
 import { LessonService } from '../services/lesson.service';
 import { Location } from '@angular/common';
 import { FormControl } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 
@@ -19,6 +20,7 @@ export class LessonContentComponent {
   public lesson: LessonDetailsModel | undefined;
   public lessonId: string | null;
   public quillForm: FormControl;
+  safeContent: SafeHtml | undefined;
 
   isAdmin = true; // Przykładowy warunek sprawdzający, czy użytkownik ma uprawnienia administratora
 
@@ -37,7 +39,9 @@ export class LessonContentComponent {
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private lessonPageService: LessonService,
-              private location: Location) {
+              private location: Location,
+              private sanitizer: DomSanitizer
+              ) {
     
     this.lessonId = this.route.snapshot.paramMap.get('id');
     this.quillForm = new FormControl()            
@@ -46,7 +50,8 @@ export class LessonContentComponent {
   ngOnInit() {
     this.lessonId && this.lessonPageService.getLessonById(this.lessonId).subscribe(response => {
       this.lesson = response;
-    })
+      this.safeContent = this.sanitizer.bypassSecurityTrustHtml(response.content.replace('<img','<img style=\'max-width:100%;\''));
+    });
   }
 
   onContentChanged(event: any) {
@@ -54,10 +59,6 @@ export class LessonContentComponent {
     
   }
 
-  test(){
-    console.log(this.quillForm)
-    
-  }
 
   goBack(): void {
     this.location.back();

@@ -5,4 +5,5 @@ export interface CourseModel {
     title: string;
     description: string;
     lessons: LessonModel[];
+    show: boolean;
   }

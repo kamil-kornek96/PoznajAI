@@ -14,14 +14,18 @@ export class LessonService {
   constructor(private http: HttpClient) { }
 
   getLessonById(lessonId: string): Observable<LessonDetailsModel> {
-    return this.http.get<LessonDetailsModel>(`${this.apiUrl}/api/Lesson/${lessonId}`);
+    return this.http.get<LessonDetailsModel>(`${this.apiUrl}/Lesson/${lessonId}`);
   }
 
   createLesson(lessonData: LessonCreateModel): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/Lesson/create`, lessonData);
+    return this.http.post(`${this.apiUrl}/Lesson/`, lessonData);
   }
 
   updateLesson(lessonData: LessonDetailsModel): Observable<any> {
-    return this.http.put(`${this.apiUrl}/api/Lesson/update/${lessonData.id}`, lessonData);
+    return this.http.put(`${this.apiUrl}/Lesson/${lessonData.id}`, lessonData);
+  }
+
+  deleteLesson(courseId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/Lesson/${courseId}`);
   }
 }
