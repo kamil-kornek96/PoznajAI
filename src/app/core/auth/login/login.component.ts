@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  isLoading: boolean = false;
 
   constructor(private authService: AuthService,private router: Router) {}
 
   onSubmit(): void {
+    this.isLoading = true;
     var user: LoginModel = {
       username: this.username,
       password: this.password
@@ -25,9 +27,11 @@ export class LoginComponent {
         console.log('Login successful:', response);
         this.authService.setToken(response.token)
         this.router.navigate(['/main-page']);
+        this.isLoading = false;
       },
       (error) => {
         console.error('Login error:', error);
+        this.isLoading = false;
       }
     );
   }

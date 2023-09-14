@@ -34,6 +34,7 @@ import { CoursesEditPageComponent } from './components/courses-edit-page/courses
 import { LessonEditPageComponent } from './components/lesson-edit-page/lesson-edit-page.component';
 import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
 import { VideoPlayerComponent } from './shared/components/video-player/video-player.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { VideoPlayerComponent } from './shared/components/video-player/video-pla
   ],
   imports: [
     BrowserModule,
+    MatProgressSpinnerModule,
     MatProgressBarModule,
     MatIconModule,
     AppRoutingModule,

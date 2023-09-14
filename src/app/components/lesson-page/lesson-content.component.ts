@@ -8,7 +8,7 @@ import { LessonService } from '../services/lesson.service';
 import { Location } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -19,6 +19,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class LessonContentComponent {
   public lesson: LessonDetailsModel | undefined;
   public lessonId: string | null;
+  public apiUrl: string = environment.apiUrl+"/";
   public quillForm: FormControl;
   safeContent: SafeHtml | undefined;
 
@@ -50,7 +51,7 @@ export class LessonContentComponent {
   ngOnInit() {
     this.lessonId && this.lessonPageService.getLessonById(this.lessonId).subscribe(response => {
       this.lesson = response;
-      this.safeContent = this.sanitizer.bypassSecurityTrustHtml(response.content.replace('<img','<img style=\'max-width:100%;\''));
+      this.safeContent = this.sanitizer.bypassSecurityTrustHtml(response.content.replace('<img','<img style=\'max-width:100%;border-radius:5px;\''));
     });
   }
 

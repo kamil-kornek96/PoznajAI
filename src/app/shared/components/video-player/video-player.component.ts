@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-video-player',
@@ -7,4 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class VideoPlayerComponent {
     @Input() videoUrl:string | undefined;
+    apiUrl:string = environment.apiUrl+"/";
 }
