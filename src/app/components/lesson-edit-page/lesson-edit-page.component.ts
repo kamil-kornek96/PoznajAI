@@ -86,7 +86,7 @@ export class LessonEditPageComponent implements OnInit {
         this.lessonService.getLessonById(lessonId).subscribe((data) => {
             console.log(data)
            this.lessonForm.patchValue(data);
-           this.videoUrl = this.apiUrl + '/' +data.video;
+           this.videoUrl = data.video;
            this.quillForm.setValue(data.content);
          });
       }
@@ -106,44 +106,27 @@ export class LessonEditPageComponent implements OnInit {
 
   handleFileUploaded(fileName: string) {
     // Tutaj możesz wykonać dowolną logikę po otrzymaniu nazwy przesłanego pliku
-    console.log(`Przesłano plik: ${fileName}`);
+    this.toastr.success(`Przesłano plik: ${fileName}`);
     this.lessonForm.patchValue({ video: fileName });
     this.videoUrl = this.apiUrl + '/' + fileName;
   }
 
 
   onSubmit(): void {
-    console.log('t')
     if (this.lessonForm.valid) {
       const lessonData = this.lessonForm.value;
       if (this.isCreatingLesson) {
         this.lessonService.createLesson(lessonData).subscribe(
           (response) => {
-            console.log('Lesson created successfully', response);
             this.router.navigate(['/main-page/course-page']);
           },
-          (error) => {
-            console.error('Error creating lesson', error);
-            this.toastr.error(
-              'An error occurred while creating the lesson',
-              'Error'
-            );
-          }
         );
       } else {
         this.lessonService.updateLesson(lessonData).subscribe(
           (response) => {
-            console.log('Lesson updated successfully', response);
             this.router.navigate(['/main-page/course-page']);
           },
-          (error) => {
-            console.error('Error updating lesson', error);
-            this.toastr.error(
-              'An error occurred while updating the lesson',
-              'Error'
-            );
-          }
-        );
+        );;
       }
     }
   }

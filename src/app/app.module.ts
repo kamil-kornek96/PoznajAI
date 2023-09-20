@@ -69,7 +69,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     MatExpansionModule,
     FontAwesomeModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 3000, // Czas trwania komunikatu w milisekundach
+      preventDuplicates: true, // Zapobiegaj duplikatom komunikatów
+    }),
     QuillModule.forRoot(),
     QuillConfigModule.forRoot({
       modules: {

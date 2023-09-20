@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { UserModel } from 'src/app/core/auth/models/user.model';
 
 @Component({
   selector: 'app-side-bar',
@@ -8,8 +8,11 @@ import { AuthService } from 'src/app/core/auth/auth.service';
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent {
-
-  constructor(private authService: AuthService) {}
+  public loggedUser: UserModel | undefined;
+  constructor(private authService: AuthService) {
+    console.log(this.authService.loggedUser)
+    this.loggedUser = this.authService.loggedUser;
+  }
   
   Logout(){
       this.authService.setToken(null);

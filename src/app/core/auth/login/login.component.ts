@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { LoginModel } from '../models/login.model';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   password: string = '';
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService,private router: Router) {}
+  constructor(private authService: AuthService,private router: Router, private toastr: ToastrService) {}
 
   onSubmit(): void {
     this.isLoading = true;
@@ -24,15 +25,15 @@ export class LoginComponent {
 
     this.authService.login(user).subscribe(
       (response) => {
-        console.log('Login successful:', response);
+        console.log({response})
         this.authService.setToken(response.token)
         this.router.navigate(['/main-page']);
         this.isLoading = false;
       },
       (error) => {
-        console.error('Login error:', error);
         this.isLoading = false;
       }
     );
   }
+
 }

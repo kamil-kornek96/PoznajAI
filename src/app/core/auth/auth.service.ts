@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { LoginModel } from './models/login.model';
 import { RegisterModel } from './models/register.model';
 import { UserModel } from './models/user.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
   public isLoggedIn: boolean = false;
   public loggedUser?: UserModel;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   getToken(): string | null {
     return sessionStorage.getItem('token');
@@ -56,11 +57,33 @@ export class AuthService {
 
   login(user: LoginModel): Observable<any> {
     const url = `${this.apiUrl}/user/login`;
-    return this.http.post(url, user);
+    return this.http.post(url, user).pipe(
+      tap(
+        (res:any) => {
+          console.log({res})
+          this.toastr.success(res.message);
+        },
+        (error) => {
+          console.log({error})
+          this.toastr.error(error.error.message);
+        }
+      )
+    );
   }
 
   register(user: RegisterModel): Observable<any> {
     const url = `${this.apiUrl}/user/register`;
-    return this.http.post(url, user);
+    return this.http.post(url, user).pipe(
+      tap(
+        (res:any) => {
+          console.log({res})
+          this.setToken(res.token)
+          this.toastr.success('Zarejestrowano pomyślnie', 'Sukces');
+        },
+        (error) => {
+          this.toastr.error('Błąd rejestracji: ' + error.error.message, 'Błąd');
+        }
+      )
+    );
   }
 }

@@ -34,3 +34,41 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(162, 155, 167, 0.534);  
   }
+
+/* Styl dla komunikatów sukcesu */
+.toast-success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #43c247;
+  box-shadow: 0px 0px 4px -1px rgba(66, 68, 90, 1);
+  min-height: 50px;
+  min-width: 250px;
+  color: #fff;
+  position: fixed;
+  bottom: 10px; /* Ustawianie na środku pionowo */
+  left: 50%; /* Ustawianie na środku poziomo */
+  transform: translate(-50%, -50%); /* Wyśrodkowanie w pionie i poziomie */
+  z-index: 9999; /* Ustawienie na górze, aby były na wierzchu */
+  padding: 15px;
+}
+
+/* Styl dla komunikatów błędu */
+.toast-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #c23939b7;
+  box-shadow: 0px 0px 4px -1px rgba(66, 68, 90, 1);
+  min-height: 50px;
+  min-width: 250px;
+  color: #fff;
+  position: fixed;
+  bottom: 10px; /* Ustawianie na środku pionowo */
+  left: 50%; /* Ustawianie na środku poziomo */
+  transform: translate(-50%, -50%); /* Wyśrodkowanie w pionie i poziomie */
+  z-index: 9999; /* Ustawienie na górze, aby były na wierzchu */
+  padding: 15px;
+}

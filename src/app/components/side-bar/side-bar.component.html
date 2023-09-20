@@ -1,13 +1,8 @@
 <div class="position-sticky">
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/main-page']">Przejdź do strony głównej</a>
-
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#" (click)="Logout()">Logout</a>
-
-        </li>
-    </ul>
+    <div class="nav flex-column">
+        <div class="nav-greetings">Witaj {{loggedUser?.firstName}} {{loggedUser?.lastName}}!</div>
+        <a class="nav-item" [routerLink]="['/main-page/course-page']">Strona główna</a>
+        <a href="#" class="nav-item">Ustawienia</a>
+        <a href="#"  class="nav-item" (click)="Logout()">Wyloguj</a>
+    </div>
 </div>
