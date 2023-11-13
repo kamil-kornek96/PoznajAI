@@ -20,7 +20,10 @@ export class AuthGuardLoggedIn implements CanActivate {
           return true;
         } else {
           this.router.navigate(['/login']);
-          this.toastr.success('Wylogowano.')
+          if(this.authService.loggedOut()){
+            this.toastr.success('Wylogowano.')
+          }
+          localStorage.setItem('logoutMsg','false')
           return false;
         }
       })

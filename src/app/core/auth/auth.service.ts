@@ -71,6 +71,15 @@ export class AuthService {
     );
   }
 
+  logout(){
+    localStorage.setItem('logoutMsg', 'true');
+    this.setToken(null)
+  }
+
+  loggedOut(){
+    return localStorage.getItem('logoutMsg') == 'true' ? true : false;
+  }
+
   register(user: RegisterModel): Observable<any> {
     const url = `${this.apiUrl}/user/register`;
     return this.http.post(url, user).pipe(

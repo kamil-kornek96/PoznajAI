@@ -19,7 +19,7 @@ export class SideBarComponent {
   }
   
   Logout(){
-      this.authService.setToken(null);
+      this.authService.logout()
   }
 }
 

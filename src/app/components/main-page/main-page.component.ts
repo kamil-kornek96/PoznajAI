@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main-page',
@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class MainPageComponent {
 
+  ngOnInit(){
+    localStorage.setItem('logoutMsg', 'false');
+  }
 }
+
