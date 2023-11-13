@@ -108,7 +108,7 @@ export class LessonEditPageComponent implements OnInit {
     // Tutaj możesz wykonać dowolną logikę po otrzymaniu nazwy przesłanego pliku
     this.toastr.success(`Przesłano plik: ${fileName}`);
     this.lessonForm.patchValue({ video: fileName });
-    this.videoUrl = this.apiUrl + '/' + fileName;
+    this.videoUrl = fileName;
   }
 
 

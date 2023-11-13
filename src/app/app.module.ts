@@ -35,6 +35,7 @@ import { LessonEditPageComponent } from './components/lesson-edit-page/lesson-ed
 import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
 import { VideoPlayerComponent } from './shared/components/video-player/video-player.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     VideoPlayerComponent,
   ],
   imports: [
+    FileUploadModule,
     BrowserModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,

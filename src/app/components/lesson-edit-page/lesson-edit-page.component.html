@@ -23,7 +23,6 @@
         class="form-control"
       >
     </div>
-    {{this.videoUrl}}
     <app-video-player [videoUrl]="this.videoUrl"></app-video-player>
     <file-upload (fileUploaded)="handleFileUploaded($event)"></file-upload>
     <div class="form-group">

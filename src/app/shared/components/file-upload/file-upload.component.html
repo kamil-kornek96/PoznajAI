@@ -8,20 +8,21 @@
 
     <button mat-mini-fab color="primary" class="upload-btn" type="button"
       (click)="fileUpload.click()">
-        <mat-icon>attach_file</mat-icon>
+      <fa-icon [icon]="faPaperclip"></fa-icon>
 
     </button>
 
 </div>
+{{uploadProgress}}
 
-<div class="progress">
+<div class="progress-wrapper">
 
   <mat-progress-bar class="progress-bar" mode="determinate"
                     [value]="uploadProgress" *ngIf="uploadProgress">
 
   </mat-progress-bar>
 
-  <mat-icon class="cancel-upload" (click)="cancelUpload()" 
-            *ngIf="uploadProgress">delete_forever</mat-icon>
+            <fa-icon (click)="cancelUpload()" 
+            *ngIf="uploadProgress" [icon]="faXmark"></fa-icon>
 
 </div>

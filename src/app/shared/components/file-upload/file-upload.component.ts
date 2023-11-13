@@ -2,7 +2,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription,finalize } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { faPaperclip,faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'file-upload',
@@ -12,6 +12,8 @@ import { environment } from 'src/environments/environment';
 export class FileUploadComponent {
     @Output() fileUploaded: EventEmitter<string> = new EventEmitter<string>();
     @Input()
+    faPaperclip = faPaperclip;
+    faXmark = faXmark;
     requiredFileType:string = "";
     private apiUrl: string = environment.apiUrl;
     fileName = '';
@@ -24,6 +26,7 @@ export class FileUploadComponent {
         const file:File = event.target.files[0];
       
         if (file) {
+            this.uploadProgress = 1;
             this.fileName = file.name;
             const formData = new FormData();
             formData.append("video", file);
@@ -35,8 +38,8 @@ export class FileUploadComponent {
             .pipe(
                 finalize(() => this.reset())
             );
-          
             this.uploadSub = upload$.subscribe(event => {
+              console.log(this.uploadProgress)
               if (event.type == HttpEventType.UploadProgress && event.total != undefined) {
                 this.uploadProgress = Math.round(100 * (event.loaded / event.total));
               } else if (event.type == HttpEventType.Response && event.body) {
