@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-free": "^6.4.2",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@microsoft/signalr": "^8.0.0",
     "@videojs/themes": "file:1.0.1/dist/city/index.css",
     "angular-oauth2-oidc": "^15.0.1",
     "bootstrap": "^5.3.1",

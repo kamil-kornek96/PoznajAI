@@ -13,7 +13,7 @@ export class SideBarComponent {
   faSliders = faSliders;
   faRightFromBracket = faRightFromBracket;
   public loggedUser: UserModel | undefined;
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
     console.log(this.authService.loggedUser)
     this.loggedUser = this.authService.loggedUser;
   }

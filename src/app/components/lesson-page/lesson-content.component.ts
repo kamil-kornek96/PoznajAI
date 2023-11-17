@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuillModules } from 'ngx-quill';
-import * as hljs from 'highlight.js';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { LessonDetailsModel } from './models/lesson-details.model';
 import { LessonService } from '../services/lesson.service';
@@ -9,6 +8,9 @@ import { Location } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { VideoConversionService } from '../services/video-conversion.service';
+import { HubConnectionService } from 'src/app/shared/components/hub-connection.service';
+import { HubConnection } from '@microsoft/signalr';
 
 
 @Component({
@@ -22,6 +24,9 @@ export class LessonContentComponent {
   public apiUrl: string = environment.apiUrl+"/";
   public quillForm: FormControl;
   safeContent: SafeHtml | undefined;
+  public progress: string | undefined;
+  private hubConnection: HubConnection | null = null;
+  public isVideoAvailable : boolean = false;
 
   isAdmin = true; // Przykładowy warunek sprawdzający, czy użytkownik ma uprawnienia administratora
 
@@ -41,7 +46,9 @@ export class LessonContentComponent {
               private authService: AuthService,
               private lessonPageService: LessonService,
               private location: Location,
-              private sanitizer: DomSanitizer
+              private sanitizer: DomSanitizer,
+              private videoConversionService: VideoConversionService,
+              private hubConnectionService: HubConnectionService
               ) {
     
     this.lessonId = this.route.snapshot.paramMap.get('id');
@@ -52,7 +59,23 @@ export class LessonContentComponent {
     this.lessonId && this.lessonPageService.getLessonById(this.lessonId).subscribe(response => {
       this.lesson = response;
       this.safeContent = this.sanitizer.bypassSecurityTrustHtml(response.content.replace('<img','<img style=\'max-width:100%;border-radius:5px;\''));
+      this.hubConnection = this.hubConnectionService.getHubConnection();
+      this.hubConnection.on(response.video, (data: any) => {
+        console.log('Received progress:', data);
+        if(data.progress != -1){
+          this.progress = data.progress
+        }
+        else{
+          this.progress = undefined;
+        }
+      });
     });
+
+  
+    this.hubConnectionService.startConnection()
+      .then(() => console.log('Connection started'))
+      .catch(err => console.log('Error while starting connection: ' + err));
+  
   }
 
   onContentChanged(event: any) {

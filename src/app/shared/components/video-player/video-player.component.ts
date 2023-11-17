@@ -8,5 +8,9 @@ import { environment } from 'src/environments/environment';
 })
 export class VideoPlayerComponent {
     @Input() videoUrl:string | undefined;
-    apiUrl:string = environment.apiUrl+"/";
+    apiUrl:string = environment.apiUrl+"/uploads/video/";
+
+
+    ngOnInit(): void {
+    }
 }

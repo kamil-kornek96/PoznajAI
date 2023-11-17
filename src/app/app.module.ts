@@ -36,6 +36,10 @@ import { FileUploadComponent } from './shared/components/file-upload/file-upload
 import { VideoPlayerComponent } from './shared/components/video-player/video-player.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
+import { SettingsPageComponent } from './components/settings/settings.component';
+import * as signalR from '@microsoft/signalr';
+import { HubConnectionBuilder, HubConnection } from '@microsoft/signalr';
+import { HubConnectionService } from './shared/components/hub-connection.service';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     LessonEditPageComponent,
     FileUploadComponent,
     VideoPlayerComponent,
+    SettingsPageComponent,
   ],
   imports: [
     FileUploadModule,
@@ -103,6 +108,7 @@ import { FileUploadModule } from 'ng2-file-upload';
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
+    HubConnectionService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

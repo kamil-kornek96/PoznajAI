@@ -28,6 +28,19 @@
     gap:10px;
 }
 
+.progress-info {
+    display: flex;
+    justify-content: center;
+}
+
+.progress-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+
+}
+
 .lesson-item{
     background-color: rgb(70, 70, 70);
     border-radius: 5px;

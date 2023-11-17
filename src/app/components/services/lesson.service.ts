@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable,tap } from 'rxjs';
+import { Observable,tap,map } from 'rxjs';
 import { LessonDetailsModel } from '../lesson-page/models/lesson-details.model';
 import { environment } from 'src/environments/environment';
 import { LessonCreateModel } from '../lesson-edit-page/models/lesson-create.model';
