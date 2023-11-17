@@ -1,0 +1,88 @@
+<mat-card class="lesson my-3">
+    <mat-card-header class="mb-3">
+        <div class="header-wrapper">
+            <div class="pointer" (click)="goBack()"><i class="fa fa-solid fa-arrow-left fa-2xs" aria-hidden="true"> </i></div>
+            <div [routerLink]="'/main-page/lesson/' + lesson?.id" class="col-10">{{ lesson?.title }}</div>
+            <div class="col-2">Czas trwania: {{ lesson?.duration }}</div>
+        </div>
+    </mat-card-header>
+    <mat-card-content *ngIf="isAdmin">
+        <div class="row">
+            <div class="col scroll-container gradient">
+                <div class="video-wrapper">
+                    <div *ngIf="progress" class="progress-container">
+                        <div class="progress-info">Trwa konwersja video...</div>
+                        <mat-progress-bar mode="determinate" value={{progress}}></mat-progress-bar>
+                        <div class="progress-info">{{progress}} %</div>
+                    </div>
+                    <app-video-player *ngIf="!progress" [videoUrl]="lesson?.video"></app-video-player>
+                </div>
+                <div class="lesson-content" *ngIf="safeContent" [innerHTML]="safeContent"></div>
+            </div>
+            <div class="col-3">
+                <div class="lesson-list">
+                    <div class="lesson-item active">
+                        <div class="row">
+                            <div class="col">                        
+                                <div class="title">Lekcja 1</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="duration">15 minut</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lesson-item">
+                        <div class="row">
+                            <div class="col">                        
+                                <div class="title">Lekcja 1</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="duration">15 minut</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lesson-item">
+                        <div class="row">
+                            <div class="col">                        
+                                <div class="title">Lekcja 1</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="duration">15 minut</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lesson-item">
+                        <div class="row">
+                            <div class="col">                        
+                                <div class="title">Lekcja 1</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="duration">15 minut</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lesson-item">
+                        <div class="row">
+                            <div class="col">                        
+                                <div class="title">Lekcja 1</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="duration">15 minut</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lesson-item">
+                        <div class="row">
+                            <div class="col">                        
+                                <div class="title">Lekcja 1</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="duration">15 minut</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </mat-card-content>
+  </mat-card>

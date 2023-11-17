@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center vh-100">
+  <div class="container my-auto" style="max-width:800px">
+    <mat-spinner style="margin:auto;" *ngIf="isLoading"></mat-spinner>
+    <mat-card *ngIf="!isLoading">
+      <h2 class="align-self-center p-3">Login</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="row px-5">
+          <mat-form-field class="col">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" [(ngModel)]="username" name="username" required>
+          </mat-form-field>
+    
+          <mat-form-field class="col">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [(ngModel)]="password" name="password" required>
+          </mat-form-field>
+        </div>
+  
+        <div class="row px-5">        
+          <button class="col mx-5 mb-5 mt-2" mat-raised-button color="primary" type="submit">Login</button>
+          <button class="col mx-5 mb-5 mt-2" routerLink="/register" mat-raised-button color="accent" type="button">Register</button>
+        </div>
+        
+      </form>
+    </mat-card>
+  </div>
+</div>
