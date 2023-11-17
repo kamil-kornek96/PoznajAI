@@ -14,7 +14,6 @@ export class SideBarComponent {
   faRightFromBracket = faRightFromBracket;
   public loggedUser: UserModel | undefined;
   constructor(public authService: AuthService) {
-    console.log(this.authService.loggedUser)
     this.loggedUser = this.authService.loggedUser;
   }
   

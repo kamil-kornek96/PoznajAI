@@ -25,7 +25,6 @@ export class LoginComponent {
 
     this.authService.login(user).subscribe(
       (response) => {
-        console.log({response})
         this.authService.setToken(response.token)
         this.router.navigate(['/main-page']);
         this.isLoading = false;

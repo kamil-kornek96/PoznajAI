@@ -19,7 +19,7 @@ const routes: Routes = [
     component: MainPageComponent,
     canActivate: [AuthGuardLoggedIn],
     children: [
-      { path: '', redirectTo: 'course-page', pathMatch: 'full' }, // Domyślna trasa
+      { path: '', redirectTo: 'course-page', pathMatch: 'full' },
       { path: 'course-page', component: CoursesPageComponent },
       { path: 'lesson/:id', component: LessonContentComponent },
       { path: 'create-lesson/:courseId', component: LessonEditPageComponent },

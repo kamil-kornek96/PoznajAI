@@ -10,10 +10,8 @@ export class VideoConversionService {
 
   constructor() {
     this.socket = new WebSocket('wss://localhost:44376/send');
-    console.log('socketOn')
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      console.log(event)
       this.progressSubject.next(data.progress);
     };
   }

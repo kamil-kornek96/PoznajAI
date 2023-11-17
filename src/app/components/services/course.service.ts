@@ -36,11 +36,9 @@ export class CourseService {
     return this.http.post(`${this.apiUrl}/Course`, courseData).pipe(
       tap(
         (res:any) => {
-          console.log({res})
           this.toastr.success(res.message);
         },
         (error) => {
-          console.log({error})
           this.toastr.error(error.error.message);
         }
       )
@@ -55,11 +53,9 @@ export class CourseService {
     return this.http.put(`${this.apiUrl}/Course/${courseData.id}`, courseData).pipe(
       tap(
         (res:any) => {
-          console.log({res})
           this.toastr.success(res.message);
         },
         (error) => {
-          console.log({error})
           this.toastr.error(error.error.message);
         }
       )
@@ -67,15 +63,12 @@ export class CourseService {
   }
 
   deleteCourse(courseId: string): Observable<any> {
-    console.log(`${this.apiUrl}/Course/${courseId}`,courseId)
     return this.http.delete(`${this.apiUrl}/Course/${courseId}`).pipe(
       tap(
         (res:any) => {
-          console.log({res})
           this.toastr.success(res.message);
         },
         (error) => {
-          console.log({error})
           //this.toastr.error(error.error.message);
         }
       )

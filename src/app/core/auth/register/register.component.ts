@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms'; // Importujemy FormBuilder i inne potrzebne klasy
+import { FormBuilder, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { RegisterModel } from '../models/register.model';
 
@@ -9,22 +9,20 @@ import { RegisterModel } from '../models/register.model';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  registrationForm: FormGroup; // Definiujemy FormGroup dla formularza rejestracji
+  registrationForm: FormGroup;
   passwordMismatch: boolean = false;
 
   constructor(private authService: AuthService, private fb: FormBuilder) {
-    // Inicjalizacja formularza w konstruktorze
     this.registrationForm = this.fb.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]], // Minimalna długość hasła
-      confirmPassword: ['', Validators.required], // Potwierdzenie hasła
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required]
-    }); // Dodajemy dodatkowy walidator dla potwierdzenia hasła
+    });
   }
 
-  // Walidator dla potwierdzenia hasła
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;

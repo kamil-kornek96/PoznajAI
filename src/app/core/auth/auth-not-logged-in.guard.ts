@@ -13,7 +13,7 @@ export class AuthGuardNotLoggedIn implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.authService.checkAuth().pipe(
-      take(1), // Take only one value, then complete the observable
+      take(1),
       map((isLoggedIn: boolean) => {
         if (isLoggedIn) {
           this.router.navigate(['/main-page']);

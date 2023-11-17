@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs'; // Add 'of' here
-import { catchError, map, tap } from 'rxjs/operators'; // Add the necessary operators
+import { BehaviorSubject, Observable, of } from 'rxjs'; 
+import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LoginModel } from './models/login.model';
@@ -38,12 +38,10 @@ export class AuthService {
       return this.http.get<{ user:UserModel}>(url).pipe(
         tap(
           (response) => {
-            console.log('Success:', response);
             this.isLoggedIn = true;
             this.loggedUser = response.user;
           },
           (error) => {
-            console.error('Error:', error);
             this.isLoggedIn = false;
           }
         ),
@@ -60,11 +58,9 @@ export class AuthService {
     return this.http.post(url, user).pipe(
       tap(
         (res:any) => {
-          console.log({res})
           this.toastr.success(res.message);
         },
         (error) => {
-          console.log({error})
           this.toastr.error(error.error.message);
         }
       )
@@ -85,7 +81,6 @@ export class AuthService {
     return this.http.post(url, user).pipe(
       tap(
         (res:any) => {
-          console.log({res})
           this.setToken(res.token)
           this.toastr.success('Zarejestrowano pomyślnie', 'Sukces');
         },

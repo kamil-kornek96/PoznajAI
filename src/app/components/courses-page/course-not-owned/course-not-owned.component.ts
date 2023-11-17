@@ -20,7 +20,6 @@ export class CourseNotOwnedComponent {
 
 
   constructor(private router: Router, public authService: AuthService, private courseService: CourseService, private toastr: ToastrService) {
-    console.log(this.authService.loggedUser?.isAdmin)
   }
 
 

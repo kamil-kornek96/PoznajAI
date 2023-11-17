@@ -9,7 +9,7 @@ export class HubConnectionService {
 
   constructor() {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl('https://localhost:44376/video-conversion-hub')  // Zmień to na odpowiednią ścieżkę do swojego huba
+      .withUrl('https://localhost:44376/video-conversion-hub')
       .build();
   }
 

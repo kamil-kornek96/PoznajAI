@@ -22,11 +22,9 @@ export class LessonService {
     return this.http.post(`${this.apiUrl}/Lesson/`, lessonData).pipe(
       tap(
         (res:any) => {
-          console.log({res})
           this.toastr.success(res.message);
         },
         (error) => {
-          console.log({error})
           this.toastr.error(error.error.message);
         }
       )
@@ -37,11 +35,9 @@ export class LessonService {
     return this.http.put(`${this.apiUrl}/Lesson/${lessonData.id}`, lessonData).pipe(
       tap(
         (res:any) => {
-          console.log({res})
           this.toastr.success(res.message);
         },
         (error) => {
-          console.log({error})
           this.toastr.error(error.error.message);
         }
       )
@@ -52,11 +48,9 @@ export class LessonService {
     return this.http.delete(`${this.apiUrl}/Lesson/${courseId}`).pipe(
       tap(
         (res:any) => {
-          console.log({res})
           this.toastr.success(res.message);
         },
         (error) => {
-          console.log({error})
           this.toastr.error(error.error.message);
         }
       )

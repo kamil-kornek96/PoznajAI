@@ -33,13 +33,11 @@ export class CourseComponent {
     if (this.course && this.course.id) {
       this.courseService.deleteCourse(this.course.id).subscribe(
         (response) => {
-          console.log('Course deleted successfully', response);
           if(this.course){
             this.course.show = false;
           }
         },
         (error) => {
-          console.error('Error deleting the course', error);
           this.toastr.error(
             'An error occurred while deleting the course',
             'Error'

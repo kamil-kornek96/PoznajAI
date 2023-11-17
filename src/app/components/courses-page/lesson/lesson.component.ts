@@ -26,14 +26,12 @@ export class LessonComponent {
     if (this.lesson && this.lesson.id) {
       this.lessonService.deleteLesson(this.lesson.id).subscribe(
         (response) => {
-          console.log('Lesson deleted successfully', response);
           if(this.lesson){
             this.lesson.show = false;
             this.router.navigate(['main-page']);
           }
         },
         (error) => {
-          console.error('Error deleting the lesson', error);
           this.toastr.error(
             'An error occurred while deleting the lesson',
             'Error'

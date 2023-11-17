@@ -6,7 +6,6 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { LessonCreateModel } from './models/lesson-create.model';
 import { environment } from 'src/environments/environment';
 import { QuillModules } from 'ngx-quill';
 
@@ -18,30 +17,30 @@ import { QuillModules } from 'ngx-quill';
 export class LessonEditPageComponent implements OnInit {
   faArrowLeft = faArrowLeft;
   lessonForm: FormGroup;
-  isCreatingLesson: boolean = true; // Dodaj zmienną, która będzie określać, czy tworzysz lekcję czy edytujesz
+  isCreatingLesson: boolean = true;
   lessonId: string | undefined;
   courseId: string | undefined;
   videoUrl: string | undefined;
   apiUrl: string = environment.apiUrl;
   editorConfig: QuillModules = {
     toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['bold', 'italic', 'underline', 'strike'],       
       ['blockquote', 'code-block'],
   
-      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'header': 1 }, { 'header': 2 }],            
       [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-      [{ 'direction': 'rtl' }],                         // text direction
+      [{ 'script': 'sub'}, { 'script': 'super' }],      
+      [{ 'indent': '-1'}, { 'indent': '+1' }],        
+      [{ 'direction': 'rtl' }],                         
   
-      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'size': ['small', false, 'large', 'huge'] }],  
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
   
-      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'color': [] }, { 'background': [] }],          
       [{ 'font': [] }],
       [{ 'align': [] }],
   
-      ['clean'],                                         // remove formatting button
+      ['clean'],                                         
   
       ['link', 'image', 'video']  
     ],
@@ -84,7 +83,6 @@ export class LessonEditPageComponent implements OnInit {
         this.lessonId = lessonId;
 
         this.lessonService.getLessonById(lessonId).subscribe((data) => {
-            console.log(data)
            this.lessonForm.patchValue(data);
            this.videoUrl = data.video;
            this.quillForm.setValue(data.content);
@@ -92,20 +90,18 @@ export class LessonEditPageComponent implements OnInit {
       }
 
       if (courseId) {
-        this.courseId = courseId; // Przypisz courseId do zmiennej
-        this.lessonForm.patchValue({ courseId: courseId }); // Wypełnij pole courseId w formularzu
+        this.courseId = courseId;
+        this.lessonForm.patchValue({ courseId: courseId });
       }
     });
 
     this.quillForm.valueChanges.subscribe((newQuillValue) => {
-      console.log(newQuillValue)
       this.lessonForm.patchValue({ content: newQuillValue });
     });
   
   }
 
   handleFileUploaded(fileName: string) {
-    // Tutaj możesz wykonać dowolną logikę po otrzymaniu nazwy przesłanego pliku
     this.toastr.success(`Przesłano plik: ${fileName}`);
     this.lessonForm.patchValue({ video: fileName });
     this.videoUrl = fileName;

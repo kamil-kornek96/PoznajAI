@@ -10,9 +10,7 @@ export class SettingsPageComponent {
   settingsHtml: string = "";
 
   constructor(private settingsService: SettingsService) {
-    // Pobierz HTML z serwisu i przypisz do zmiennej
     settingsService.getSettingsHtml().subscribe((res) => {
-      console.log(res)
       this.settingsHtml = res;
     });
   }

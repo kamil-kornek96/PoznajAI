@@ -16,7 +16,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 })
 export class CoursesEditPageComponent implements OnInit {
   course: CourseUpdateModel | undefined;
-  isCreatingCourse: boolean = true; // Dodaj zmienną, która będzie określać, czy tworzysz kurs czy edytujesz
+  isCreatingCourse: boolean = true;
   courseForm: FormGroup;
   faArrowLeft = faArrowLeft;
 
@@ -45,7 +45,7 @@ export class CoursesEditPageComponent implements OnInit {
       const courseId = params.get('id');
 
       if (courseId) {
-        this.isCreatingCourse = false; // Jeśli istnieje courseId, to nie tworzymy kursu, tylko go edytujemy
+        this.isCreatingCourse = false;
 
         this.courseService.getCourseToUpdate(courseId).subscribe((data) => {
           this.course = data;
@@ -60,14 +60,11 @@ export class CoursesEditPageComponent implements OnInit {
       const formData = this.courseForm.value;
 
       if (this.isCreatingCourse) {
-        // Tworzenie nowego kursu
         this.courseService.createCourse(formData).subscribe(
           (response) => {
-            console.log('Course created successfully', response);
             this.router.navigate(['/main-page/course-page']);
           },
           (error) => {
-            console.error('Error creating course', error);
             this.toastr.error(
               'An error occurred while creating the course',
               'Error'
@@ -75,16 +72,13 @@ export class CoursesEditPageComponent implements OnInit {
           }
         );
       } else {
-        // Edycja istniejącego kursu
         const updatedCourseData = formData as CourseUpdateModel;
 
         this.courseService.updateCourse(updatedCourseData).subscribe(
           (response) => {
-            console.log('Course updated successfully', response);
             this.router.navigate(['/main-page/course-page']);
           },
           (error) => {
-            console.error('Error updating course', error);
             this.toastr.error(
               'An error occurred while updating the course',
               'Error'

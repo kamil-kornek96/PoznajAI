@@ -61,7 +61,6 @@ export class LessonContentComponent {
       this.safeContent = this.sanitizer.bypassSecurityTrustHtml(response.content.replace('<img','<img style=\'max-width:100%;border-radius:5px;\''));
       this.hubConnection = this.hubConnectionService.getHubConnection();
       this.hubConnection.on(response.video, (data: any) => {
-        console.log('Received progress:', data);
         if(data.progress != -1){
           this.progress = data.progress
         }
