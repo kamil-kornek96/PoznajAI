@@ -40,6 +40,8 @@ import { SettingsPageComponent } from './components/settings/settings.component'
 import * as signalR from '@microsoft/signalr';
 import { HubConnectionBuilder, HubConnection } from '@microsoft/signalr';
 import { HubConnectionService } from './shared/components/hub-connection.service';
+import { CustomInputComponent } from './components/layout/custom-input/custom-input.component';
+import { CustomCheckboxComponent } from './components/layout/custom-checkbox/custom-checkbox.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { HubConnectionService } from './shared/components/hub-connection.service
     FileUploadComponent,
     VideoPlayerComponent,
     SettingsPageComponent,
+    CustomInputComponent,
+    CustomCheckboxComponent,
   ],
   imports: [
     FileUploadModule,

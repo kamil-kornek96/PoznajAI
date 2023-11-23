@@ -1,0 +1,5 @@
+<div [class]="wrapperClass">
+    <div *ngIf="inputLabel" class="label">{{inputLabel}}</div>
+        <input [style]="inputIconStyle" [disabled]="disabled" [class]="inputClass" [placeholder]="inputPlaceholder"/>
+    <div *ngIf="inputHint" [class]="hintTextClass"><div [class]="hintIconClass"></div>{{inputHint}}</div>
+</div>  
