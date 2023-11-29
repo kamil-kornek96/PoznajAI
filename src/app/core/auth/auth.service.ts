@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { LoginModel } from './models/login.model';
 import { RegisterModel } from './models/register.model';
 import { UserModel } from './models/user.model';
-import { ToastrService } from 'ngx-toastr';
+import { ToastService, toastTypes } from 'src/app/components/services/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class AuthService {
   public isLoggedIn: boolean = false;
   public loggedUser?: UserModel;
 
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(private http: HttpClient, private toast: ToastService) {}
 
   getToken(): string | null {
     return sessionStorage.getItem('token');
@@ -58,10 +58,16 @@ export class AuthService {
     return this.http.post(url, user).pipe(
       tap(
         (res:any) => {
-          this.toastr.success(res.message);
+          this.toast.initiate({
+            type: toastTypes.success,
+            content: res.message
+          });
         },
         (error) => {
-          this.toastr.error(error.error.message);
+          this.toast.initiate({
+            type: toastTypes.error,
+            content: error.error.message
+          });
         }
       )
     );
@@ -82,10 +88,16 @@ export class AuthService {
       tap(
         (res:any) => {
           this.setToken(res.token)
-          this.toastr.success('Zarejestrowano pomyślnie', 'Sukces');
+          this.toast.initiate({
+            type: toastTypes.success,
+            content: res.message
+          });
         },
         (error) => {
-          this.toastr.error('Błąd rejestracji: ' + error.error.message, 'Błąd');
+          this.toast.initiate({
+            type: toastTypes.error,
+            content: error.error.message
+          });
         }
       )
     );

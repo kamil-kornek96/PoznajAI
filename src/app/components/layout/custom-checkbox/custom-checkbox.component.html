@@ -1,1 +1,8 @@
-<p>custom-checkbox works!</p>
+<div class="checkbox-wrapper" (click)="onClick()">
+    <div class="checkbox">
+        <input type="checkbox" [checked]="checked">
+        <div *ngIf="checked" class="checkbox-icon"></div>
+    </div>
+    <label *ngIf="label" class="checkbox-text">{{label}}</label>
+</div>
+

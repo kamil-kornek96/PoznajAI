@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { LoginModel } from '../models/login.model';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,27 +11,54 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  isChecked = false;
+  rightClasses: string = "right";
+  loaderClasses: string = "loader-container"
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService,private router: Router, private toastr: ToastrService) {}
+  constructor(private authService: AuthService,private router: Router) {}
+
+  async ngOnInit() {
+
+  }
+
+  loaderOn() {
+    this.rightClasses = "right right-full";
+    this.loaderClasses = "loader-container loader-center"
+    this.isLoading = true;
+  }
+
+  loaderOff() {
+    this.rightClasses = "right";
+    this.loaderClasses = "loader-container"
+    this.isLoading = false;
+  }
 
   onSubmit(): void {
-    this.isLoading = true;
+    this.loaderOn();
+  
     var user: LoginModel = {
       username: this.username,
       password: this.password
     }
-
+  
     this.authService.login(user).subscribe(
       (response) => {
-        this.authService.setToken(response.token)
-        this.router.navigate(['/main-page']);
-        this.isLoading = false;
+        // Opóźnienie 0.5s przed przekierowaniem do strony głównej
+        setTimeout(() => {
+          this.authService.setToken(response.token);
+          this.router.navigate(['/main-page']);
+          this.loaderOff();
+        }, 500);
       },
       (error) => {
-        this.isLoading = false;
+        // Opóźnienie 0.5s przed zakończeniem ładowania w przypadku błędu
+        setTimeout(() => {
+          this.loaderOff();
+        }, 500);
       }
     );
   }
+  
 
 }

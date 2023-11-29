@@ -3,14 +3,14 @@ import { CanActivate, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
+import { ToastService, toastTypes } from 'src/app/components/services/toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardLoggedIn implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+  constructor(private authService: AuthService, private router: Router, private toast: ToastService) {}
 
   canActivate(): Observable<boolean> {
     return this.authService.checkAuth().pipe(
@@ -21,7 +21,10 @@ export class AuthGuardLoggedIn implements CanActivate {
         } else {
           this.router.navigate(['/login']);
           if(this.authService.loggedOut()){
-            this.toastr.success('Wylogowano.')
+            this.toast.initiate({
+              type: toastTypes.success,
+              content: "Wylogowano."
+            });
           }
           localStorage.setItem('logoutMsg','false')
           return false;

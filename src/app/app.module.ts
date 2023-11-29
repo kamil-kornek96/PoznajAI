@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
+import { ToastComponent } from './components/layout/toast/toast.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ import { HubConnectionBuilder, HubConnection } from '@microsoft/signalr';
 import { HubConnectionService } from './shared/components/hub-connection.service';
 import { CustomInputComponent } from './components/layout/custom-input/custom-input.component';
 import { CustomCheckboxComponent } from './components/layout/custom-checkbox/custom-checkbox.component';
+import { CustomButtonComponent } from './components/layout/custom-button/custom-button.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { CustomCheckboxComponent } from './components/layout/custom-checkbox/cus
     SettingsPageComponent,
     CustomInputComponent,
     CustomCheckboxComponent,
+    CustomButtonComponent,
+    ToastComponent,
   ],
   imports: [
     FileUploadModule,
