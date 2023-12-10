@@ -44,6 +44,7 @@ import { HubConnectionService } from './shared/components/hub-connection.service
 import { CustomInputComponent } from './components/layout/custom-input/custom-input.component';
 import { CustomCheckboxComponent } from './components/layout/custom-checkbox/custom-checkbox.component';
 import { CustomButtonComponent } from './components/layout/custom-button/custom-button.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { CustomButtonComponent } from './components/layout/custom-button/custom-
     CustomCheckboxComponent,
     CustomButtonComponent,
     ToastComponent,
+    ChatbotComponent,
   ],
   imports: [
     FileUploadModule,
