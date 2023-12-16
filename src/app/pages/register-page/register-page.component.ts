@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { RegisterModel } from 'src/app/models/register.model';
+import { LoginModel } from 'src/app/models/login.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -9,51 +9,59 @@ import { RegisterModel } from 'src/app/models/register.model';
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent {
-  registrationForm: FormGroup;
-  passwordMismatch: boolean = false;
+  username: string = '';
+  email: string = '';
+  repeatEmail: string = '';
+  password: string = '';
+  repeatPassword: string = '';
+  isChecked = false;
+  rightClasses: string = "right";
+  loaderClasses: string = "loader-container"
+  isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
-    this.registrationForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required]
-    });
+  constructor(private authService: AuthService,private router: Router) {}
+
+  async ngOnInit() {
+
   }
 
-  passwordMatchValidator(formGroup: FormGroup) {
-    const password = formGroup.get('password')?.value;
-    const confirmPassword = formGroup.get('confirmPassword')?.value;
-    if (password !== confirmPassword) {
-      this.passwordMismatch = true;
-    } else {
-      this.passwordMismatch = false;
-    }
+  loaderOn() {
+    this.rightClasses = "right right-full";
+    this.loaderClasses = "loader-container loader-center"
+    this.isLoading = true;
+  }
+
+  loaderOff() {
+    this.rightClasses = "right";
+    this.loaderClasses = "loader-container"
+    this.isLoading = false;
   }
 
   onSubmit(): void {
-    this.passwordMatchValidator(this.registrationForm);
+    this.loaderOn();
   
-    if (this.registrationForm.valid) {
-      const user:RegisterModel = {
-        username: this.registrationForm.value.username,
-        password: this.registrationForm.value.password,
-        email: this.registrationForm.value.email,
-        firstName: this.registrationForm.value.firstName,
-        lastName: this.registrationForm.value.lastName
-      };
-  
-      this.authService.register(user).subscribe(
-        (response) => {
-          console.log('Registration successful:', response);
-          this.authService.setToken(response.token)
-        },
-        (error) => {
-          console.error('Registration error:', error);
-        }
-      );
+    var user: LoginModel = {
+      username: this.username,
+      password: this.password
     }
+  
+    this.authService.login(user).subscribe(
+      (response) => {
+        // Opóźnienie 0.5s przed przekierowaniem do strony głównej
+        setTimeout(() => {
+          this.authService.setToken(response.token);
+          this.router.navigate(['/main-page']);
+          this.loaderOff();
+        }, 500);
+      },
+      (error) => {
+        // Opóźnienie 0.5s przed zakończeniem ładowania w przypadku błędu
+        setTimeout(() => {
+          this.loaderOff();
+        }, 500);
+      }
+    );
   }
+  
+
 }

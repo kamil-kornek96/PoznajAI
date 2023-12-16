@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 import { map,tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-import { CourseResponseModel } from '../models/course-response.model';
+import { UserCoursesModel } from '../models/user-courses.model';
 import { CourseUpdateModel } from '../models/course-update.model';
 
 import { ToastrService } from 'ngx-toastr';
+import { CourseModel } from '../models/course.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,10 @@ export class CourseService {
 
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
-  getUserCourses(): Observable<CourseResponseModel> {
-    return this.http.get<CourseResponseModel>(`${this.apiUrl}/Course/my-courses`)
+  getUserCourses(): Observable<UserCoursesModel> {
+    return this.http.get<UserCoursesModel>(`${this.apiUrl}/Course/my-courses`)
       .pipe(
-        map((res: CourseResponseModel) => {
+        map((res: UserCoursesModel) => {
           res.allCourses.forEach(c => {
             c.lessons.forEach(l => l.show = true)
             c.show = true
@@ -77,7 +78,7 @@ export class CourseService {
     );
   }
 
-  getCourseById(courseId: string): Observable<CourseResponseModel> {
-    return this.http.get<CourseResponseModel>(`${this.apiUrl}/Course/${courseId}`);
+  getCourseById(courseId: string): Observable<CourseModel> {
+    return this.http.get<CourseModel>(`${this.apiUrl}/Course/${courseId}`);
   }
 }

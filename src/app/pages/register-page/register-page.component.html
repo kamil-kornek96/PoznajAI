@@ -1,58 +1,90 @@
-<div class="d-flex justify-content-center vh-100">
-  <div class="container my-auto" style="max-width:800px">
-    <mat-card>
-      <h2 class="align-self-center p-3">Register</h2>
-      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-        <div class="row px-5">
-          <mat-form-field class="col">
-            <mat-label>Username</mat-label>
-            <input matInput type="text" formControlName="username" required>
-            <mat-error *ngIf="registrationForm.get('username')?.hasError('required')">Username is required</mat-error>
-          </mat-form-field>
-  
-          <mat-form-field class="col">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" required>
-            <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">Password is required</mat-error>
-            <mat-error *ngIf="registrationForm.get('password')?.hasError('minlength')">Password must be at least 8 characters long</mat-error>
-          </mat-form-field>
+<div class="login-page">
+  <div class="login-card">
+    <div class="left">
+      <div class="logo"></div>
+      <div class="login-form">
+        <div class="title">Stwórz <span class="gradient-title">konto</span></div>
+        <div class="description">I zacznij poznawać z nami świat AI!</div>
+        <div class="form-inputs">
+          <div class="row">
+            <app-custom-input 
+              [inputIcon]="'letter'" 
+              [(value)]="username" 
+              [inputStyle]="''" 
+              [disabled]="false" 
+              [inputPlaceholder]="'Login'" 
+              [inputLabel]="''" 
+              [inputHint]="''">
+            </app-custom-input>
+          </div>
+          <div class="row">
+            <div class="col">
+              <app-custom-input 
+                [inputIcon]="'letter'" 
+                [type]="'email'" 
+                [(value)]="email"  
+                [inputStyle]="''" 
+                [disabled]="false" 
+                [inputPlaceholder]="'Twoje adres e-mail'" 
+                [inputLabel]="''" 
+                [inputHint]="''">
+              </app-custom-input>
+            </div>
+            <div class="col">
+              <app-custom-input 
+              [inputIcon]="'letter'" 
+              [type]="'email'" 
+              [(value)]="repeatEmail"  
+              [inputStyle]="''" 
+              [disabled]="false" 
+              [inputPlaceholder]="'Potwórz adres e-mail'" 
+              [inputLabel]="''" 
+              [inputHint]="''">
+            </app-custom-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <app-custom-input 
+                [inputIcon]="'lock'" 
+                [type]="'password'" 
+                [(value)]="repeatPassword"  
+                [inputStyle]="''" 
+                [disabled]="false" 
+                [inputPlaceholder]="'Twoje hasło'" 
+                [inputLabel]="''" 
+                [inputHint]="''">
+              </app-custom-input>
+            </div>
+            <div class="col">
+              <app-custom-input 
+                [inputIcon]="'lock'" 
+                [type]="'password'" 
+                [(value)]="password"  
+                [inputStyle]="''" 
+                [disabled]="false" 
+                [inputPlaceholder]="'Potwórz hasło'" 
+                [inputLabel]="''" 
+                [inputHint]="''">
+              </app-custom-input>
+            </div>
+          </div>
+
+         
+          
         </div>
-  
-        <div class="row px-5">
-          <mat-form-field class="col">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email" required>
-            <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">Email is required</mat-error>
-            <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">Invalid email format</mat-error>
-          </mat-form-field>
-  
-          <mat-form-field class="col">
-            <mat-label>First Name</mat-label>
-            <input matInput type="text" formControlName="firstName" required>
-            <mat-error *ngIf="registrationForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
-          </mat-form-field>
-  
-          <mat-form-field class="col">
-            <mat-label>Last Name</mat-label>
-            <input matInput type="text" formControlName="lastName" required>
-            <mat-error *ngIf="registrationForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
-          </mat-form-field>
-        </div>
-  
-        <div class="row px-5">
-          <mat-form-field class="col">
-            <mat-label>Confirm Password</mat-label>
-            <input matInput type="password" formControlName="confirmPassword" required>
-            <mat-error *ngIf="registrationForm.get('confirmPassword')?.hasError('required') && !passwordMismatch">Confirm Password is required</mat-error>
-            <mat-error *ngIf="passwordMismatch">Passwords do not match</mat-error>
-          </mat-form-field>
-        </div>
-  
-        <div class="row px-5">
-          <button class="col mx-5 mb-5 mt-2" mat-raised-button color="primary" type="submit">Register</button>
-          <button class="col mx-5 mb-5 mt-2" routerLink="/main-page" mat-raised-button color="accent" type="button">Login</button>
-        </div>
-      </form>
-    </mat-card>
+       <div class="bottom">
+        <app-custom-checkbox [(checked)]="isChecked" [label]="'Zapamiętaj mnie'"></app-custom-checkbox>
+        <a class="gradient-text bottom-text" href="#" >Zapomniałeś hasła?</a>
+       </div>
+       <div class="buttons">
+        <app-custom-button type="big" (click)="onSubmit()">Zaloguj</app-custom-button>
+       </div>
+      </div>
+      <div class="footer">Masz konto? <a class="gradient-text" [routerLink]="['/login']">Zaloguj się</a></div>
+    </div>
+    <div [class]="rightClasses">    <div [class]="loaderClasses">
+      <span class="loader"></span>
+  </div></div>
   </div>
 </div>

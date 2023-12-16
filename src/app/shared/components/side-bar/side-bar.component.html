@@ -1,20 +1,6 @@
 <div class="position-sticky">
-    <div class="nav-header-wrapper">
-        <div class="nav-header">
-            <div class="nav-avatar"></div>
-            <div class="nav-name">
-                <div>{{loggedUser?.firstName}} {{loggedUser?.lastName}}</div>
-                <div class="name-green">online</div>
-            </div>
-            <div [class]="chevronClass" (click)="toogleDropdown()"></div>
-        </div>
-        <a *ngIf="dropDownActive" class="" [routerLink]="['/main-page/course-page']"><div class="search-icon"></div>Wyloguj</a>
-    </div>
+    <app-nav-header [user]="loggedUser"></app-nav-header>
     <div class="nav flex-column">
-        <!-- <div class="nav-greetings">Witaj {{loggedUser?.firstName}} {{loggedUser?.lastName}}!</div> -->
-        <a class="nav-small-item" [routerLink]="['/main-page/course-page']"><div class="search-icon"></div>Szukaj</a>
         <a class="nav-item" [routerLink]="['/main-page/course-page']">Strona główna</a>
-        <a *ngIf="authService.loggedUser?.isAdmin" [routerLink]="['/main-page/settings']" class="nav-item">Ustawienia</a>
-        <a href="#"  class="nav-item" (click)="Logout()">Wyloguj</a>
     </div>
 </div>

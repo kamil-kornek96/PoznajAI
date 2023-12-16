@@ -4,6 +4,8 @@ import { filter } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserModel } from 'src/app/models/user.model';
 import { faHouse, faSliders, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { CourseService } from 'src/app/services/course.service';
+import { UserCoursesModel } from 'src/app/models/user-courses.model';
 
 @Component({
   selector: 'app-side-bar',
@@ -14,14 +16,13 @@ export class SideBarComponent implements OnInit {
   faHouse = faHouse;
   faSliders = faSliders;
   faRightFromBracket = faRightFromBracket;
-  chevronClass: string = "nav-chevron-down"
-  dropDownItemClass: string = "nav-small-item"
-  dropDownActive: boolean = true;
   public loggedUser: UserModel | undefined;
+  public userCourses: UserCoursesModel | undefined;
 
   constructor(
     public authService: AuthService,
-    private router: Router
+    private router: Router,
+    public courseService: CourseService
   ) {
     this.loggedUser = this.authService.loggedUser;
   }
@@ -35,23 +36,15 @@ export class SideBarComponent implements OnInit {
         this.setActiveNavItem();
       });
 
+      this.courseService.getUserCourses().subscribe(response => {
+        this.userCourses = response;
+        console.log(this.userCourses)
+      })
+
   }
 
   ngAfterViewInit(){
     this.setActiveNavItem();
-  }
-
-  toogleDropdown(){
-    if(this.chevronClass == "nav-chevron-down"){
-      this.chevronClass = "nav-chevron-down rotate-180";
-      this.dropDownItemClass = "nav-small-item active"
-      this.dropDownActive = true;
-    }
-    else{
-      this.chevronClass = "nav-chevron-down";
-      this.dropDownItemClass = "nav-small-item"
-      this.dropDownActive = false;
-    }
   }
 
   setActiveNavItem() {

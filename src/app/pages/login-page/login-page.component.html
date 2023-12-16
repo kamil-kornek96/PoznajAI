@@ -17,7 +17,7 @@
         <app-custom-button type="big" (click)="onSubmit()">Zaloguj</app-custom-button>
        </div>
       </div>
-      <div class="footer">Nie masz konta? <span class="gradient-text">Zarejestruj się</span></div>
+      <div class="footer">Nie masz konta? <a class="gradient-text" [routerLink]="['/register']">Zarejestruj się</a></div>
     </div>
     <div [class]="rightClasses">    <div [class]="loaderClasses">
       <span class="loader"></span>
