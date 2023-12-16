@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './core/auth/login/login.component';
-import { RegisterComponent } from './core/auth/register/register.component';
-import { AuthGuardLoggedIn } from './core/auth/auth-logged-in.guard';
-import { AuthGuardNotLoggedIn } from './core/auth/auth-not-logged-in.guard';
-import { MainPageComponent } from './components/main-page/main-page.component';
-import { CoursesPageComponent } from './components/courses-page/courses-page.component';
-import { LessonContentComponent } from './components/lesson-page/lesson-content.component';
-import { CoursesEditPageComponent } from './components/courses-edit-page/courses-edit-page.component';
-import { LessonEditPageComponent } from './components/lesson-edit-page/lesson-edit-page.component';
-import { SettingsPageComponent } from './components/settings/settings.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { AuthGuardLoggedIn } from './guards/auth-logged-in.guard';
+import { AuthGuardNotLoggedIn } from './guards/auth-not-logged-in.guard';
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
+import { LessonPageComponent } from './pages/lesson-page/lesson-page.component';
+import { CoursesEditPageComponent } from './pages/courses-edit-page/courses-edit-page.component';
+import { LessonEditPageComponent } from './pages/lesson-edit-page/lesson-edit-page.component';
+import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuardNotLoggedIn] },
-  { path: 'register', component: RegisterComponent, canActivate: [AuthGuardNotLoggedIn] },
+  { path: 'login', component: LoginPageComponent, canActivate: [AuthGuardNotLoggedIn] },
+  { path: 'register', component: RegisterPageComponent, canActivate: [AuthGuardNotLoggedIn] },
   {
     path: 'main-page',
     component: MainPageComponent,
@@ -21,7 +21,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'course-page', pathMatch: 'full' },
       { path: 'course-page', component: CoursesPageComponent },
-      { path: 'lesson/:id', component: LessonContentComponent },
+      { path: 'lesson/:id', component: LessonPageComponent },
       { path: 'create-lesson/:courseId', component: LessonEditPageComponent },
       { path: 'edit-lesson/:lessonId', component: LessonEditPageComponent },
       { path: 'edit-course/:id', component: CoursesEditPageComponent },

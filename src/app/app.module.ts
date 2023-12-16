@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
-import { ToastComponent } from './components/layout/toast/toast.component';
+import { ToastComponent } from './shared/components/toast/toast.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './core/auth/login/login.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,49 +14,48 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthInterceptor } from './core/http/oauth.interceptor';
+import { AuthInterceptor } from './http/oauth.interceptor';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatIconModule } from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { RegisterComponent } from './core/auth/register/register.component';
-import { MainPageComponent } from './components/main-page/main-page.component';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { CoursesPageComponent } from './components/courses-page/courses-page.component';
-import { CourseComponent } from './components/courses-page/course/course.component';
-import { LessonComponent } from './components/courses-page/lesson/lesson.component';
-import { LessonContentComponent } from './components/lesson-page/lesson-content.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
+import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
+import { CourseComponent } from './shared/components/course/course.component';
+import { LessonComponent } from './shared/components/lesson/lesson.component';
+import { LessonPageComponent } from './pages/lesson-page/lesson-page.component';
 import { QuillModule } from 'ngx-quill';
 import { QuillConfigModule } from 'ngx-quill/config';
-import { CourseNotOwnedComponent } from './components/courses-page/course-not-owned/course-not-owned.component';
-import { CoursesEditPageComponent } from './components/courses-edit-page/courses-edit-page.component';
-import { LessonEditPageComponent } from './components/lesson-edit-page/lesson-edit-page.component';
+import { CourseNotOwnedComponent } from './shared/components/course-not-owned/course-not-owned.component';
+import { CoursesEditPageComponent } from './pages/courses-edit-page/courses-edit-page.component';
+import { LessonEditPageComponent } from './pages/lesson-edit-page/lesson-edit-page.component';
 import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
 import { VideoPlayerComponent } from './shared/components/video-player/video-player.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
-import { SettingsPageComponent } from './components/settings/settings.component';
+import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import * as signalR from '@microsoft/signalr';
 import { HubConnectionBuilder, HubConnection } from '@microsoft/signalr';
-import { HubConnectionService } from './shared/components/hub-connection.service';
-import { CustomInputComponent } from './components/layout/custom-input/custom-input.component';
-import { CustomCheckboxComponent } from './components/layout/custom-checkbox/custom-checkbox.component';
-import { CustomButtonComponent } from './components/layout/custom-button/custom-button.component';
-import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { HubConnectionService } from './services/hub-connection.service';
+import { CustomInputComponent } from './shared/components/custom-input/custom-input.component';
+import { CustomCheckboxComponent } from './shared/components/custom-checkbox/custom-checkbox.component';
+import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
     MainPageComponent,
     SideBarComponent,
     CoursesPageComponent,
     CourseComponent,
     LessonComponent,
-    LessonContentComponent,
+    LessonPageComponent,
     CourseNotOwnedComponent,
     CoursesEditPageComponent,
     LessonEditPageComponent,
@@ -67,7 +66,6 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     CustomCheckboxComponent,
     CustomButtonComponent,
     ToastComponent,
-    ChatbotComponent,
   ],
   imports: [
     FileUploadModule,

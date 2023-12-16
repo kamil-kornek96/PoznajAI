@@ -1,0 +1,27 @@
+
+.container-fluid {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px;
+    height: 100%;
+    box-sizing: border-box; /* Upewnienie się, że padding nie zwiększa szerokości */
+}
+
+.main {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    border: 1px solid red;
+    padding: 10px; /* Dodanie paddingu dla .main, aby oddzielić od .sidebar */
+    box-sizing: border-box; /* Upewnienie się, że padding nie zwiększa szerokości */
+}
+
+.sidebar{
+    display: flex;
+    width: 312px;
+    min-height: 100%;
+    flex-direction: column;
+    border-radius: 20px;
+    background: var(--noble-black-800, #0D0F10);
+}
