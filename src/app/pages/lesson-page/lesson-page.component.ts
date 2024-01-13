@@ -63,6 +63,7 @@ export class LessonPageComponent {
       this.hubConnection = this.hubConnectionService.getHubConnection();
       this.hubConnection.on(response.video, (data: any) => {
         if(data.progress != -1){
+          console.log(data.progress)
           this.progress = data.progress
         }
         else{
@@ -77,6 +78,13 @@ export class LessonPageComponent {
       .catch(err => console.log('Error while starting connection: ' + err));
   
   }
+
+  ngOnDestroy(){
+    this.hubConnectionService.stopConnection()
+      .then(() => console.log('Connection stopped'))
+      .catch(err => console.log('Error while starting connection: ' + err));
+  }
+  
 
   onContentChanged(event: any) {
     console.log(event)

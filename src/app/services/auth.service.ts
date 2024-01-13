@@ -37,7 +37,7 @@ export class AuthService {
 
   checkAuth(): Observable<boolean> {
     if (!this.isLoggedIn) {
-      const url = `${this.apiUrl}/user/check-auth`;
+      const url = `${this.apiUrl}/user/auth`;
       return this.http.get<{ user:UserModel}>(url).pipe(
         tap(
           (response) => {

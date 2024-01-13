@@ -23,7 +23,7 @@ export class AuthGuardLoggedIn implements CanActivate {
         if (isLoggedIn) {
           return true;
         } else {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/welcome']);
           if(this.authService.loggedOut()){
             this.toast.initiate({
               type: toastTypes.success,

@@ -10,12 +10,17 @@ export class HubConnectionService {
 
   constructor() {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl(environment.url+'video-conversion-hub')
+      .withUrl(environment.url+'/video-conversion-hub')
       .build();
   }
 
   startConnection() {
+    console.log(environment.url+'/video-conversion-hub')
     return this.hubConnection.start();
+  }
+  
+  stopConnection() {
+    return this.hubConnection.stop();
   }
 
   getHubConnection() {

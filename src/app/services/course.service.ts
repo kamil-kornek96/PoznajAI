@@ -19,7 +19,7 @@ export class CourseService {
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   getUserCourses(): Observable<UserCoursesModel> {
-    return this.http.get<UserCoursesModel>(`${this.apiUrl}/Course/my-courses`)
+    return this.http.get<UserCoursesModel>(`${this.apiUrl}/user/courses`)
       .pipe(
         map((res: UserCoursesModel) => {
           res.allCourses.forEach(c => {
@@ -36,7 +36,7 @@ export class CourseService {
   }
 
   createCourse(courseData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/Course`, courseData).pipe(
+    return this.http.post(`${this.apiUrl}/course`, courseData).pipe(
       tap(
         (res:any) => {
           this.toastr.success(res.message);
@@ -49,11 +49,11 @@ export class CourseService {
   }
 
   getCourseToUpdate(courseId: string): Observable<CourseUpdateModel> {
-    return this.http.get<CourseUpdateModel>(`${this.apiUrl}/Course/${courseId}`);
+    return this.http.get<CourseUpdateModel>(`${this.apiUrl}/course/${courseId}`);
   }
 
   updateCourse(courseData: CourseUpdateModel): Observable<any> {
-    return this.http.put(`${this.apiUrl}/Course/${courseData.id}`, courseData).pipe(
+    return this.http.put(`${this.apiUrl}/course/${courseData.id}`, courseData).pipe(
       tap(
         (res:any) => {
           this.toastr.success(res.message);
@@ -66,19 +66,19 @@ export class CourseService {
   }
 
   deleteCourse(courseId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/Course/${courseId}`).pipe(
+    return this.http.delete(`${this.apiUrl}/course/${courseId}`).pipe(
       tap(
         (res:any) => {
           this.toastr.success(res.message);
         },
         (error) => {
-          //this.toastr.error(error.error.message);
+          this.toastr.error(error.error.message);
         }
       )
     );
   }
 
   getCourseById(courseId: string): Observable<CourseModel> {
-    return this.http.get<CourseModel>(`${this.apiUrl}/Course/${courseId}`);
+    return this.http.get<CourseModel>(`${this.apiUrl}/course/${courseId}`);
   }
 }

@@ -8,4 +8,5 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class CustomButtonComponent {
   @Input() text: string = "";
   @Input() type: 'big' | 'normal' | 'small' = 'normal';
+  @Input() disabled: boolean = false;
 }

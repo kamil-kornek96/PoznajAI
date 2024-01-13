@@ -18,11 +18,11 @@ export class LessonService {
   constructor(private http: HttpClient,private toastr: ToastrService) { }
 
   getLessonById(lessonId: string): Observable<LessonDetailsModel> {
-    return this.http.get<LessonDetailsModel>(`${this.apiUrl}/Lesson/${lessonId}`);
+    return this.http.get<LessonDetailsModel>(`${this.apiUrl}/lesson/${lessonId}`);
   }
 
   createLesson(lessonData: LessonCreateModel): Observable<any> {
-    return this.http.post(`${this.apiUrl}/Lesson/`, lessonData).pipe(
+    return this.http.post(`${this.apiUrl}/lesson/`, lessonData).pipe(
       tap(
         (res:any) => {
           this.toastr.success(res.message);
@@ -35,7 +35,7 @@ export class LessonService {
   }
 
   updateLesson(lessonData: LessonDetailsModel): Observable<any> {
-    return this.http.put(`${this.apiUrl}/Lesson/${lessonData.id}`, lessonData).pipe(
+    return this.http.put(`${this.apiUrl}/lesson/${lessonData.id}`, lessonData).pipe(
       tap(
         (res:any) => {
           this.toastr.success(res.message);
@@ -48,7 +48,7 @@ export class LessonService {
   }
 
   deleteLesson(courseId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/Lesson/${courseId}`).pipe(
+    return this.http.delete(`${this.apiUrl}/lesson/${courseId}`).pipe(
       tap(
         (res:any) => {
           this.toastr.success(res.message);

@@ -5,7 +5,7 @@ import { ToastComponent } from './shared/components/toast/toast.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +21,6 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
@@ -38,19 +37,18 @@ import { VideoPlayerComponent } from './shared/components/video-player/video-pla
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
-import * as signalR from '@microsoft/signalr';
-import { HubConnectionBuilder, HubConnection } from '@microsoft/signalr';
 import { HubConnectionService } from './services/hub-connection.service';
 import { CustomInputComponent } from './shared/components/custom-input/custom-input.component';
 import { CustomCheckboxComponent } from './shared/components/custom-checkbox/custom-checkbox.component';
 import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
 import { NavHeaderComponent } from './shared/components/nav-header/nav-header.component';
+import { LoginFormComponent } from './shared/components/login-form/login-form.component';
+import { RegisterFormComponent } from './shared/components/register-form/register-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
-    RegisterPageComponent,
+    WelcomePageComponent,
     MainPageComponent,
     SideBarComponent,
     CoursesPageComponent,
@@ -68,6 +66,8 @@ import { NavHeaderComponent } from './shared/components/nav-header/nav-header.co
     CustomButtonComponent,
     ToastComponent,
     NavHeaderComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   imports: [
     FileUploadModule,

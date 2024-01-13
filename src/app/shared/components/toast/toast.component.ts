@@ -72,17 +72,20 @@ export class ToastComponent implements OnInit {
   ngOnInit() {}
 
   countDown() {
-    this.progressInterval = setInterval(() => {
-      const time = this.timeDefault;
-        console.log(time)
-      if (time <= 0) {
-        this.toastService.hide();
-        clearInterval(this.progressInterval);
-        return;
-      }
-
-      this.timeDefault = time - 2;
-    }, 150);
+    if(this.progressInterval == undefined){
+      this.progressInterval = setInterval(() => {
+        const time = this.timeDefault;
+        if (time <= 0) {
+          this.toastService.hide();
+          clearInterval(this.progressInterval);
+          this.progressInterval = undefined;
+          this.timeDefault = 30;
+          return;
+        }
+  
+        this.timeDefault = time - 2;
+      }, 150);
+    }
   }
 
   stopCountDown() {
