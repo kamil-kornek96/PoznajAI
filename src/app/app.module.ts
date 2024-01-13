@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
+import { ToastComponent } from './shared/components/toast/toast.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './core/auth/login/login.component';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,51 +14,60 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthInterceptor } from './core/http/oauth.interceptor';
+import { AuthInterceptor } from './http/oauth.interceptor';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatIconModule } from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { RegisterComponent } from './core/auth/register/register.component';
-import { MainPageComponent } from './components/main-page/main-page.component';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { CoursesPageComponent } from './components/courses-page/courses-page.component';
-import { CourseComponent } from './components/courses-page/course/course.component';
-import { LessonComponent } from './components/courses-page/lesson/lesson.component';
-import { LessonContentComponent } from './components/lesson-page/lesson-content.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
+import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
+import { CourseComponent } from './shared/components/course/course.component';
+import { LessonComponent } from './shared/components/lesson/lesson.component';
+import { LessonPageComponent } from './pages/lesson-page/lesson-page.component';
 import { QuillModule } from 'ngx-quill';
 import { QuillConfigModule } from 'ngx-quill/config';
-import { CourseNotOwnedComponent } from './components/courses-page/course-not-owned/course-not-owned.component';
-import { CoursesEditPageComponent } from './components/courses-edit-page/courses-edit-page.component';
-import { LessonEditPageComponent } from './components/lesson-edit-page/lesson-edit-page.component';
+import { CourseNotOwnedComponent } from './shared/components/course-not-owned/course-not-owned.component';
+import { CoursesEditPageComponent } from './pages/courses-edit-page/courses-edit-page.component';
+import { LessonEditPageComponent } from './pages/lesson-edit-page/lesson-edit-page.component';
 import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
 import { VideoPlayerComponent } from './shared/components/video-player/video-player.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
-import { SettingsPageComponent } from './components/settings/settings.component';
-import * as signalR from '@microsoft/signalr';
-import { HubConnectionBuilder, HubConnection } from '@microsoft/signalr';
-import { HubConnectionService } from './shared/components/hub-connection.service';
+import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
+import { HubConnectionService } from './services/hub-connection.service';
+import { CustomInputComponent } from './shared/components/custom-input/custom-input.component';
+import { CustomCheckboxComponent } from './shared/components/custom-checkbox/custom-checkbox.component';
+import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
+import { NavHeaderComponent } from './shared/components/nav-header/nav-header.component';
+import { LoginFormComponent } from './shared/components/login-form/login-form.component';
+import { RegisterFormComponent } from './shared/components/register-form/register-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
+    WelcomePageComponent,
     MainPageComponent,
     SideBarComponent,
     CoursesPageComponent,
     CourseComponent,
     LessonComponent,
-    LessonContentComponent,
+    LessonPageComponent,
     CourseNotOwnedComponent,
     CoursesEditPageComponent,
     LessonEditPageComponent,
     FileUploadComponent,
     VideoPlayerComponent,
     SettingsPageComponent,
+    CustomInputComponent,
+    CustomCheckboxComponent,
+    CustomButtonComponent,
+    ToastComponent,
+    NavHeaderComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   imports: [
     FileUploadModule,
@@ -77,33 +87,33 @@ import { HubConnectionService } from './shared/components/hub-connection.service
     MatExpansionModule,
     FontAwesomeModule,
     ToastrModule.forRoot({
-      timeOut: 3000, // Czas trwania komunikatu w milisekundach
-      preventDuplicates: true, // Zapobiegaj duplikatom komunikatów
+      timeOut: 3000, 
+      preventDuplicates: true,
     }),
     QuillModule.forRoot(),
     QuillConfigModule.forRoot({
       modules: {
         syntax: true,
         toolbar: [
-          ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+          ['bold', 'italic', 'underline', 'strike'],        
           ['blockquote', 'code-block'],
       
-          [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+          [{ 'header': 1 }, { 'header': 2 }],               
           [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-          [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-          [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-          [{ 'direction': 'rtl' }],                         // text direction
+          [{ 'script': 'sub'}, { 'script': 'super' }],      
+          [{ 'indent': '-1'}, { 'indent': '+1' }],          
+          [{ 'direction': 'rtl' }],                         
       
-          [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+          [{ 'size': ['small', false, 'large', 'huge'] }],  
           [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       
-          [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+          [{ 'color': [] }, { 'background': [] }],          
           [{ 'font': [] }],
           [{ 'align': [] }],
       
-          ['clean'],                                         // remove formatting button
+          ['clean'],                                         
       
-          ['link', 'image', 'video']                         // link and image, video
+          ['link', 'image', 'video']                         
         ]}}),
   ],
   providers: [

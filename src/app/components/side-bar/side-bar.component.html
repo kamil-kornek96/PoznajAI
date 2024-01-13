@@ -1,8 +1,0 @@
-<div class="position-sticky">
-    <div class="nav flex-column">
-        <div class="nav-greetings">Witaj {{loggedUser?.firstName}} {{loggedUser?.lastName}}!</div>
-        <a class="nav-item" [routerLink]="['/main-page/course-page']"><fa-icon [icon]="faHouse"></fa-icon>Strona główna</a>
-        <a *ngIf="authService.loggedUser?.isAdmin" [routerLink]="['/main-page/settings']" class="nav-item"><fa-icon [icon]="faSliders"></fa-icon>Ustawienia</a>
-        <a href="#"  class="nav-item" (click)="Logout()"><fa-icon [icon]="faRightFromBracket"></fa-icon>Wyloguj</a>
-    </div>
-</div>

@@ -5,9 +5,14 @@
 @import 'assets/quill.core.css';
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 @import "../node_modules/video.js/src/css/video-js.scss";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-html, body { height: 100%;background-color: #333; color:white;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%;background-color: #1A1D21; color:white; overflow: hidden;}
+body { margin: 0; }
+
+body,html {
+  font-family: Plus Jakarta Sans;
+}
 
 .pointer, .ng-fa-icon {
     cursor: pointer;

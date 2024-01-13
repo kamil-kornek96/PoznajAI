@@ -39,13 +39,11 @@ export class FileUploadComponent {
                 finalize(() => this.reset())
             );
             this.uploadSub = upload$.subscribe(event => {
-              console.log(this.uploadProgress)
               if (event.type == HttpEventType.UploadProgress && event.total != undefined) {
                 this.uploadProgress = Math.round(100 * (event.loaded / event.total));
               } else if (event.type == HttpEventType.Response && event.body) {
                 const uploadedFileName = (event.body as any).fileName;
-                console.log(uploadedFileName);
-                this.fileUploaded.emit(uploadedFileName); // Wyemituj zdarzenie z nazwą pliku
+                this.fileUploaded.emit(uploadedFileName);
               }
             });
         }
