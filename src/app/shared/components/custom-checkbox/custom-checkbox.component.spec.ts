@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomCheckboxComponent } from './custom-checkbox.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 describe('CustomCheckboxComponent', () => {
   let component: CustomCheckboxComponent;
@@ -8,7 +12,9 @@ describe('CustomCheckboxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomCheckboxComponent]
+      declarations: [CustomCheckboxComponent],
+      providers: [],
+      imports: [HttpClientModule,CommonModule,FormsModule],  // Add RouterModule here
     });
     fixture = TestBed.createComponent(CustomCheckboxComponent);
     component = fixture.componentInstance;
