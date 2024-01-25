@@ -58,10 +58,10 @@ export class LessonPageComponent {
 
   ngOnInit() {
     this.lessonId && this.lessonPageService.getLessonById(this.lessonId).subscribe(response => {
-      this.lesson = response;
-      this.safeContent = this.sanitizer.bypassSecurityTrustHtml(response.content.replace('<img','<img style=\'max-width:100%;border-radius:5px;\''));
+      this.lesson = response.data;
+      this.safeContent = this.sanitizer.bypassSecurityTrustHtml(response.data.content.replace('<img','<img style=\'max-width:100%;border-radius:5px;\''));
       this.hubConnection = this.hubConnectionService.getHubConnection();
-      this.hubConnection.on(response.video, (data: any) => {
+      this.hubConnection.on(response.data.video, (data: any) => {
         if(data.progress != -1){
           console.log(data.progress)
           this.progress = data.progress

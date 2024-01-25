@@ -38,11 +38,12 @@ export class AuthService {
   checkAuth(): Observable<boolean> {
     if (!this.isLoggedIn) {
       const url = `${this.apiUrl}/user/auth`;
-      return this.http.get<{ user:UserModel}>(url).pipe(
+      return this.http.get<{ data:UserModel}>(url).pipe(
         tap(
           (response) => {
+            console.log(response)
             this.isLoggedIn = true;
-            this.loggedUser = response.user;
+            this.loggedUser = response.data;
           },
           (error) => {
             this.isLoggedIn = false;

@@ -27,7 +27,7 @@ const routes: Routes = [
       { path: 'settings', component: SettingsPageComponent}
     ]
   },
-  { path: '', redirectTo: '/main-page', pathMatch: 'full' },
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
 ];
 
 @NgModule({

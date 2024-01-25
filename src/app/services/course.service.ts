@@ -18,15 +18,15 @@ export class CourseService {
 
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
-  getUserCourses(): Observable<UserCoursesModel> {
-    return this.http.get<UserCoursesModel>(`${this.apiUrl}/user/courses`)
+  getUserCourses(): Observable<{data:UserCoursesModel}> {
+    return this.http.get<{data:UserCoursesModel}>(`${this.apiUrl}/user/courses`)
       .pipe(
-        map((res: UserCoursesModel) => {
-          res.allCourses.forEach(c => {
+        map((res: {data:UserCoursesModel}) => {
+          res.data.allCourses.forEach(c => {
             c.lessons.forEach(l => l.show = true)
             c.show = true
           });
-          res.ownedCourses.forEach(c => {
+          res.data.ownedCourses.forEach(c => {
             c.lessons.forEach(l => l.show = true)
             c.show = true
           });
@@ -48,8 +48,8 @@ export class CourseService {
     );;
   }
 
-  getCourseToUpdate(courseId: string): Observable<CourseUpdateModel> {
-    return this.http.get<CourseUpdateModel>(`${this.apiUrl}/course/${courseId}`);
+  getCourseToUpdate(courseId: string): Observable<{data: CourseUpdateModel}> {
+    return this.http.get<{data: CourseUpdateModel}>(`${this.apiUrl}/course/${courseId}`);
   }
 
   updateCourse(courseData: CourseUpdateModel): Observable<any> {
@@ -78,7 +78,7 @@ export class CourseService {
     );
   }
 
-  getCourseById(courseId: string): Observable<CourseModel> {
-    return this.http.get<CourseModel>(`${this.apiUrl}/course/${courseId}`);
+  getCourseById(courseId: string): Observable<{data:CourseModel}> {
+    return this.http.get<{data:CourseModel}>(`${this.apiUrl}/course/${courseId}`);
   }
 }

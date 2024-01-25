@@ -36,7 +36,7 @@ export class LoginFormComponent {
       (response) => {
         // Opóźnienie 0.5s przed przekierowaniem do strony głównej
         setTimeout(() => {
-          this.authService.setToken(response.token);
+          this.authService.setToken(response.data.token);
           this.router.navigate(['/main-page']);
           if(this.loaderOff)
             this.loaderOff();

@@ -24,7 +24,7 @@ export class CoursesPageComponent {
 
     ngOnInit(){
       this.courseService.getUserCourses().subscribe(response => {
-        this.userCourses = response;
+        this.userCourses = response.data;
       })
     }
 
