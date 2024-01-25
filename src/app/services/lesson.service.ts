@@ -17,8 +17,8 @@ export class LessonService {
 
   constructor(private http: HttpClient,private toastr: ToastrService) { }
 
-  getLessonById(lessonId: string): Observable<LessonDetailsModel> {
-    return this.http.get<LessonDetailsModel>(`${this.apiUrl}/lesson/${lessonId}`);
+  getLessonById(lessonId: string): Observable<{data: LessonDetailsModel}> {
+    return this.http.get<{data: LessonDetailsModel}>(`${this.apiUrl}/lesson/${lessonId}`);
   }
 
   createLesson(lessonData: LessonCreateModel): Observable<any> {

@@ -49,9 +49,9 @@ export class CoursesEditPageComponent implements OnInit {
       if (courseId) {
         this.isCreatingCourse = false;
 
-        this.courseService.getCourseToUpdate(courseId).subscribe((data) => {
-          this.course = data;
-          this.courseForm.patchValue(data);
+        this.courseService.getCourseToUpdate(courseId).subscribe((res) => {
+          this.course = res.data;
+          this.courseForm.patchValue(res.data);
         });
       }
     });

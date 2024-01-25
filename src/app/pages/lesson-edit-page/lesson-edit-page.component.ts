@@ -83,10 +83,10 @@ export class LessonEditPageComponent implements OnInit {
         this.isCreatingLesson = false; 
         this.lessonId = lessonId;
 
-        this.lessonService.getLessonById(lessonId).subscribe((data) => {
-           this.lessonForm.patchValue(data);
-           this.videoUrl = data.video;
-           this.quillForm.setValue(data.content);
+        this.lessonService.getLessonById(lessonId).subscribe((res) => {
+           this.lessonForm.patchValue(res.data);
+           this.videoUrl = res.data.video;
+           this.quillForm.setValue(res.data.content);
          });
       }
 

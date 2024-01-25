@@ -35,7 +35,7 @@ export class SideBarComponent implements OnInit {
       });
 
       this.courseService.getUserCourses().subscribe(response => {
-        this.userCourses = response;
+        this.userCourses = response.data;
         console.log(this.userCourses)
       })
 
