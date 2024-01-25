@@ -47,7 +47,7 @@ export class LessonService {
     );
   }
 
-  deleteLesson(courseId: string): Observable<any> {
+  deleteLesson(courseId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/lesson/${courseId}`).pipe(
       tap(
         (res:any) => {

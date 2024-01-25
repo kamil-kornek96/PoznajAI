@@ -31,8 +31,6 @@ export class SideBarComponent implements OnInit {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
-        // Funkcja wywołana przy każdej zmianie routingu
-        // Sprawdzamy aktualną ścieżkę i dodajemy klasę aktywną na podstawie dopasowania routerLink
         this.setActiveNavItem();
       });
 

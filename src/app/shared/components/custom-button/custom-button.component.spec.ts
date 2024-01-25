@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomButtonComponent } from './custom-button.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('CustomButtonComponent', () => {
   let component: CustomButtonComponent;
@@ -8,7 +9,9 @@ describe('CustomButtonComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomButtonComponent]
+      declarations: [],
+      providers: [],
+      imports: [HttpClientModule],
     });
     fixture = TestBed.createComponent(CustomButtonComponent);
     component = fixture.componentInstance;
