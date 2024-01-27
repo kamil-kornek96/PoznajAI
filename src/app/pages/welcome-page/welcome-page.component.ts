@@ -23,16 +23,17 @@ export class WelcomePageComponent {
     }
   }
   
-  loaderOn() {
-    console.log('on')
+  loaderOn = () => {
+    console.log('on');
     this.rightClasses = "right right-full";
-    this.loaderClasses = "loader-container loader-center"
+    this.loaderClasses = "loader-container loader-center";
+    console.log(this.rightClasses, this.loaderClasses);
   }
-
-  loaderOff() {
-    console.log('off')
+  
+  loaderOff = () => {
+    console.log('off');
     this.rightClasses = "right";
-    this.loaderClasses = "loader-container"
+    this.loaderClasses = "loader-container";
   }
 
 }

@@ -101,9 +101,16 @@ export class AuthService {
         (res:any) => {
         },
         (error) => {
+          let message = ""
+          if(error.error.message == "Username is taken."){
+            message = "Konto o podanym adresie email już istnieje."
+          }
+          else{
+            message = "Podczas rejestracji wystąpił nieoczekiwany błąd."
+          }
           this.toast.initiate({
             type: toastTypes.error,
-            content: error.error.message
+            content: message
           });
         }
       )
