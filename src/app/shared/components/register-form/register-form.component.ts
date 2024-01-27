@@ -60,12 +60,12 @@ export class RegisterFormComponent {
   }
 
   validatePassword(){
-    if(this.register.password != '' && this.register.password == this.repeatPassword){
+    if(this.register.password != '' && this.repeatPassword != '' &&this.register.password == this.repeatPassword){
       this.passwordInputStyle = "";
       this.passwordInputError = "";
       return true;
     }
-    else{
+    else {
       this.passwordInputStyle = "error";
       this.passwordInputError = "Hasła różnią się"
       return false     
@@ -103,28 +103,20 @@ export class RegisterFormComponent {
     const validPassword = this.validatePassword();
     const validFirstName = this.validateFirstName();
     const validLastName = this.validateLastName();
-    if(validEmail && validPassword){
+    if(validEmail && validPassword && validFirstName && validLastName){
       if(this.loaderOn){
         this.loaderOn();
       }
-    
-  
     this.authService.register(this.register).subscribe(
       (response) => {
-        // Opóźnienie 0.5s przed przekierowaniem do strony głównej
-        setTimeout(() => {
-          localStorage.setItem('newUser', '1')
-          this.successRegistration = true;
-          if(this.loaderOff)
-            this.loaderOff();
-        }, 500);
+        localStorage.setItem('newUser', '1')
+        this.successRegistration = true;
+        if(this.loaderOff)
+          this.loaderOff();
       },
       (error) => {
-        // Opóźnienie 0.5s przed zakończeniem ładowania w przypadku błędu
-        setTimeout(() => {
-          if(this.loaderOff)
-            this.loaderOff();
-        }, 500);
+        if(this.loaderOff)
+          this.loaderOff();
       }
     );
     }

@@ -34,20 +34,14 @@ export class LoginFormComponent {
   
     this.authService.login(this.login).subscribe(
       (response) => {
-        // Opóźnienie 0.5s przed przekierowaniem do strony głównej
-        setTimeout(() => {
           this.authService.setToken(response.data.token);
           this.router.navigate(['/main-page']);
           if(this.loaderOff)
             this.loaderOff();
-        }, 500);
       },
       (error) => {
-        // Opóźnienie 0.5s przed zakończeniem ładowania w przypadku błędu
-        setTimeout(() => {
-          if(this.loaderOff)
-            this.loaderOff();
-        }, 500);
+        if(this.loaderOff)
+          this.loaderOff();
       }
     );
   }
