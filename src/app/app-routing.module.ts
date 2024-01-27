@@ -9,9 +9,11 @@ import { LessonPageComponent } from './pages/lesson-page/lesson-page.component';
 import { CoursesEditPageComponent } from './pages/courses-edit-page/courses-edit-page.component';
 import { LessonEditPageComponent } from './pages/lesson-edit-page/lesson-edit-page.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
+import { ActivationPageComponent } from './pages/activation-page/activation-page.component';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomePageComponent, canActivate: [AuthGuardNotLoggedIn] },
+  { path: 'activation', component: ActivationPageComponent, canActivate: [AuthGuardNotLoggedIn] },
   {
     path: 'main-page',
     component: MainPageComponent,

@@ -35,11 +35,14 @@ export class RegisterFormComponent {
   passwordInputError: string = "";
   lastNameInputError: string = "";
   firstNameInputError: string = "";
+  successRegistration: boolean = false;
 
   constructor(private authService: AuthService,private router: Router, private toast: ToastService) {}
 
   login(){
     this.isLogin = true;
+    localStorage.setItem('newUser', '1')
+    this.successRegistration = false;
     this.isLoginChange.emit(this.isLogin);
   }
 
@@ -101,16 +104,17 @@ export class RegisterFormComponent {
     const validFirstName = this.validateFirstName();
     const validLastName = this.validateLastName();
     if(validEmail && validPassword){
-      if(this.loaderOn)
-      this.loaderOn();
+      if(this.loaderOn){
+        this.loaderOn();
+      }
     
   
     this.authService.register(this.register).subscribe(
       (response) => {
         // Opóźnienie 0.5s przed przekierowaniem do strony głównej
         setTimeout(() => {
-          this.authService.setToken(response.token);
-          this.router.navigate(['/main-page']);
+          localStorage.setItem('newUser', '1')
+          this.successRegistration = true;
           if(this.loaderOff)
             this.loaderOff();
         }, 500);

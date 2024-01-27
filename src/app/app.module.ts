@@ -44,11 +44,13 @@ import { CustomButtonComponent } from './shared/components/custom-button/custom-
 import { NavHeaderComponent } from './shared/components/nav-header/nav-header.component';
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
 import { RegisterFormComponent } from './shared/components/register-form/register-form.component';
+import { ActivationPageComponent } from './pages/activation-page/activation-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomePageComponent,
+    ActivationPageComponent,
     MainPageComponent,
     SideBarComponent,
     CoursesPageComponent,

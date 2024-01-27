@@ -1,0 +1,21 @@
+<div class="activation-page">
+  <div class="activation-card">
+    <div class="left">
+      <div class="logo"></div>
+    <div *ngIf="isSuccess" class="message">
+      <h1>Konto zostało aktywowane!</h1>
+      <p>Aktywacja konta przebiegła pomyślnie możesz się zalogować!</p>
+      <img class="icon" src="assets/icons/toast-success.svg">
+      <a class="gradient-text" (click)="goToLogin()" style="font-weight: 700; margin-top: 20px">Przejdź do logowania</a>
+    </div>
+    <div *ngIf="!isSuccess" class="message">
+      <h1>{{errorMessage}}</h1>
+      <img class="icon" src="assets/icons/toast-error.svg">
+      <a class="gradient-text" (click)="goToLogin()" style="font-weight: 700; margin-top: 20px">Przejdź do logowania</a>
+    </div>
+    </div>
+    <div [class]="rightClasses">    <div [class]="loaderClasses">
+      <span class="loader"></span>
+  </div></div>
+  </div>
+</div>

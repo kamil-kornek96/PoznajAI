@@ -68,10 +68,18 @@ export class AuthService {
           });
         },
         (error) => {
-          this.toast.initiate({
-            type: toastTypes.error,
-            content: error.error.message
-          });
+          if(error.error.message == "Account not activated"){
+            this.toast.initiate({
+              type: toastTypes.error,
+              content: "Konto nie zostało aktywowane. Sprawdź email."
+            });
+          }
+          else{
+            this.toast.initiate({
+              type: toastTypes.error,
+              content: "Niepoprawna nazwa użytkownika i/lub hasło."
+            });
+          }
         }
       )
     );
@@ -91,11 +99,6 @@ export class AuthService {
     return this.http.post(url, user).pipe(
       tap(
         (res:any) => {
-          this.setToken(res.token)
-          this.toast.initiate({
-            type: toastTypes.success,
-            content: res.message
-          });
         },
         (error) => {
           this.toast.initiate({
@@ -106,4 +109,11 @@ export class AuthService {
       )
     );
   }
+
+  activateEmail(token: string): Observable<any> {
+    const url = `${this.apiUrl}/user/activate`;
+    console.log(url)
+    return this.http.post(url, {token });
+  }
+  
 }
