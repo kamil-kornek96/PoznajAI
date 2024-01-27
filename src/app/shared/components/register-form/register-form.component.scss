@@ -39,6 +39,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    cursor: pointer;
   }
 
   .gradient-title {
@@ -103,6 +104,18 @@
 
 .row{
     gap: 24px 0px;
+}
+
+.success-message{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: 30vh;
+}
+
+.icon {
+    width: 75px;
 }
 
 @media (max-width: 1000px) {

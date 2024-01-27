@@ -13,15 +13,24 @@ export class WelcomePageComponent {
 
 
   async ngOnInit() {
-
+    const newUser = localStorage.getItem('newUser');
+    console.log(newUser)
+    if(newUser){
+      this.isLogin = true;
+    }
+    else{
+      this.isLogin = false;
+    }
   }
   
   loaderOn() {
+    console.log('on')
     this.rightClasses = "right right-full";
     this.loaderClasses = "loader-container loader-center"
   }
 
   loaderOff() {
+    console.log('off')
     this.rightClasses = "right";
     this.loaderClasses = "loader-container"
   }
