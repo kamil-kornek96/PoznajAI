@@ -1,10 +1,12 @@
 <mat-card [routerLink]="'/main-page/lesson/' + lesson.id" class="lesson mt-3">
-    <mat-card-header class="mb-3">
-        <div class="col-10">
-            {{ lesson.title }} 
-            <fa-icon (click)="editLesson()" [icon]="faPencil"></fa-icon> 
-            <fa-icon (click)="deleteLesson()" [icon]="faXmark"></fa-icon>
-        </div>
-        <div class="col-2"><strong>Czas trwania:</strong> {{ lesson.duration }}</div>
-    </mat-card-header>
-  </mat-card>
+  <mat-card-header class="mb-3">
+    <div class="col-10">
+      {{ lesson.title }}
+      <fa-icon (click)="editLesson()" [icon]="faPencil"></fa-icon>
+      <fa-icon (click)="deleteLesson()" [icon]="faXmark"></fa-icon>
+    </div>
+    <div class="col-2">
+      <strong>Czas trwania:</strong> {{ lesson.duration }}
+    </div>
+  </mat-card-header>
+</mat-card>

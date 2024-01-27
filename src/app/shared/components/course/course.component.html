@@ -1,36 +1,35 @@
-
-    <mat-expansion-panel *ngIf="course && course.lessons && course.lessons.length > 0" class="expansion-panel my-2" [expanded]="true">
-        <mat-expansion-panel-header class="expansion-panel-header">
-            <div class="container-fluid">
-                <div class="row">
-                  <div class="col">
-                    <h3>{{course.title}} <fa-icon (click)="editCourse()" [icon]="faPencil"></fa-icon> <fa-icon (click)="deleteCourse()" [icon]="faXmark"></fa-icon></h3>
-                    <h5 class="ms-2">{{course.description}}</h5>
-                  </div>
-                  <!-- <div class="col-md-1">
+<mat-expansion-panel
+  *ngIf="course && course.lessons && course.lessons.length > 0"
+  class="expansion-panel my-2"
+  [expanded]="true"
+>
+  <mat-expansion-panel-header class="expansion-panel-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h3>
+            {{ course.title }}
+            <fa-icon (click)="editCourse()" [icon]="faPencil"></fa-icon>
+            <fa-icon (click)="deleteCourse()" [icon]="faXmark"></fa-icon>
+          </h3>
+          <h5 class="ms-2">{{ course.description }}</h5>
+        </div>
+        <!-- <div class="col-md-1">
                     <button class="btn btn-primary" (click)="buyCourse()">Kup</button>
                   </div> -->
-                </div>
-              </div>
-              
-
-          </mat-expansion-panel-header>
-          <div class="container-fluid">
-            <div *ngFor="let lesson of course.lessons">
-                <app-lesson [owned]="true" [lesson]="lesson"></app-lesson>
-            </div>
-          </div>
-          <div *ngIf="authService.loggedUser?.isAdmin" class="container-fluid">
-            <div>
-              <mat-card class="lesson my-3" (click)="createLesson()">
-                <mat-card-content>
-                    Dodaj lekcję
-                </mat-card-content>
-            </mat-card>
-            </div>
-          </div>
-    </mat-expansion-panel>
-
-    
-
-  
+      </div>
+    </div>
+  </mat-expansion-panel-header>
+  <div class="container-fluid">
+    <div *ngFor="let lesson of course.lessons">
+      <app-lesson [owned]="true" [lesson]="lesson"></app-lesson>
+    </div>
+  </div>
+  <div *ngIf="authService.loggedUser?.isAdmin" class="container-fluid">
+    <div>
+      <mat-card class="lesson my-3" (click)="createLesson()">
+        <mat-card-content> Dodaj lekcję </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</mat-expansion-panel>

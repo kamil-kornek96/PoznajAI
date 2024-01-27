@@ -29,7 +29,7 @@ export class CoursesEditPageComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private toastr: ToastrService,
-    private location: Location
+    private location: Location,
   ) {
     if (!this.authService.loggedUser?.isAdmin) {
       this.router.navigate(['/main-page/course-page']);
@@ -69,9 +69,9 @@ export class CoursesEditPageComponent implements OnInit {
           (error) => {
             this.toastr.error(
               'An error occurred while creating the course',
-              'Error'
+              'Error',
             );
-          }
+          },
         );
       } else {
         const updatedCourseData = formData as CourseUpdateModel;
@@ -83,9 +83,9 @@ export class CoursesEditPageComponent implements OnInit {
           (error) => {
             this.toastr.error(
               'An error occurred while updating the course',
-              'Error'
+              'Error',
             );
-          }
+          },
         );
       }
     }

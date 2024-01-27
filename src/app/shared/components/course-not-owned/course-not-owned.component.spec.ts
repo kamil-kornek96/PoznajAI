@@ -8,7 +8,7 @@ describe('CourseNotOwnedComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseNotOwnedComponent]
+      declarations: [CourseNotOwnedComponent],
     });
     fixture = TestBed.createComponent(CourseNotOwnedComponent);
     component = fixture.componentInstance;

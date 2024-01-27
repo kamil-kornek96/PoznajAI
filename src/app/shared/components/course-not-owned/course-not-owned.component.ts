@@ -11,39 +11,38 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-course-not-owned',
   templateUrl: './course-not-owned.component.html',
-  styleUrls: ['./course-not-owned.component.scss']
+  styleUrls: ['./course-not-owned.component.scss'],
 })
-
 export class CourseNotOwnedComponent {
   @Input() course: CourseModel | undefined;
   @Input() owned: boolean | undefined;
   faPencil = faPencil;
   faXmark = faXmark;
 
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private courseService: CourseService,
+    private toastr: ToastrService,
+  ) {}
 
-  constructor(private router: Router, public authService: AuthService, private courseService: CourseService, private toastr: ToastrService) {
-  }
-
-
-  editCourse(){
+  editCourse() {
     if (this.course && this.course.id) {
       this.router.navigate(['main-page/edit-course', this.course.id]);
     }
   }
 
-  deleteCourse(){
+  deleteCourse() {
     if (this.course && this.course.id) {
-      this.courseService.deleteCourse(this.course.id).subscribe(
-        (response) => {
-          if(this.course){
-            this.course.show = false;
-          }
+      this.courseService.deleteCourse(this.course.id).subscribe((response) => {
+        if (this.course) {
+          this.course.show = false;
         }
-      );
+      });
     }
   }
 
-  createLesson(){
+  createLesson() {
     if (this.course && this.course.id) {
       this.router.navigate(['main-page/create-lesson', this.course.id]);
     }

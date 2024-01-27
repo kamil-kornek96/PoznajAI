@@ -1,44 +1,45 @@
 <mat-card *ngIf="course" class="expansion-panel my-2 py-3">
-    <mat-card-header class="expansion-panel-header mx-2">
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col-9">
-                <h3>{{course.title}} <fa-icon (click)="editCourse()" [icon]="faPencil"></fa-icon>  <fa-icon (click)="deleteCourse()" [icon]="faXmark"></fa-icon></h3>
-                <h5 class="ms-2">{{course.description}}</h5>
-                
-              </div>
-              <div class="col-3">
-                <mat-card class="group-button-card">
-                    <mat-card-content>
-                        <h6 class="m-0 p-0">Moduł dostępny w pakiecie Programista</h6>
-                        <h5>Kup pakiet</h5>
-                    </mat-card-content>
-              </mat-card>
-            </div>
-              <!-- <div class="col-md-1">
+  <mat-card-header class="expansion-panel-header mx-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-9">
+          <h3>
+            {{ course.title }}
+            <fa-icon (click)="editCourse()" [icon]="faPencil"></fa-icon>
+            <fa-icon (click)="deleteCourse()" [icon]="faXmark"></fa-icon>
+          </h3>
+          <h5 class="ms-2">{{ course.description }}</h5>
+        </div>
+        <div class="col-3">
+          <mat-card class="group-button-card">
+            <mat-card-content>
+              <h6 class="m-0 p-0">Moduł dostępny w pakiecie Programista</h6>
+              <h5>Kup pakiet</h5>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <!-- <div class="col-md-1">
                 <button class="btn btn-primary" (click)="buyCourse()">Kup</button>
               </div> -->
-            </div>
-          </div>
-      </mat-card-header>
-      <div class="container-fluid">
-        <div class="mx-4">
-            <div *ngFor="let lesson of course.lessons">
-                <app-lesson *ngIf="lesson.show" [owned]="false" [lesson]="lesson"></app-lesson>
-            </div>
-        </div>
       </div>
-      <div *ngIf="authService.loggedUser?.isAdmin" class="container-fluid">
-        <div class="mx-4">
-            <mat-card class="lesson mt-3" (click)="createLesson()">
-                <mat-card-content>
-                    Dodaj lekcję
-                </mat-card-content>
-            </mat-card>
-        </div>
+    </div>
+  </mat-card-header>
+  <div class="container-fluid">
+    <div class="mx-4">
+      <div *ngFor="let lesson of course.lessons">
+        <app-lesson
+          *ngIf="lesson.show"
+          [owned]="false"
+          [lesson]="lesson"
+        ></app-lesson>
       </div>
-
+    </div>
+  </div>
+  <div *ngIf="authService.loggedUser?.isAdmin" class="container-fluid">
+    <div class="mx-4">
+      <mat-card class="lesson mt-3" (click)="createLesson()">
+        <mat-card-content> Dodaj lekcję </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </mat-card>
-
-
-

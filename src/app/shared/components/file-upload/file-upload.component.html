@@ -1,28 +1,38 @@
-<input type="file" class="file-input"
-       [accept]="requiredFileType"
-       (change)="onFileSelected($event)" #fileUpload>
+<input
+  type="file"
+  class="file-input"
+  [accept]="requiredFileType"
+  (change)="onFileSelected($event)"
+  #fileUpload
+/>
 
 <div class="file-upload">
+  {{ fileName || "No file uploaded yet." }}
 
-   {{fileName || "No file uploaded yet."}}
-
-    <button mat-mini-fab color="primary" class="upload-btn" type="button"
-      (click)="fileUpload.click()">
-      <fa-icon [icon]="faPaperclip"></fa-icon>
-
-    </button>
-
+  <button
+    mat-mini-fab
+    color="primary"
+    class="upload-btn"
+    type="button"
+    (click)="fileUpload.click()"
+  >
+    <fa-icon [icon]="faPaperclip"></fa-icon>
+  </button>
 </div>
-{{uploadProgress}}
+{{ uploadProgress }}
 
 <div class="progress-wrapper">
-
-  <mat-progress-bar class="progress-bar" mode="determinate"
-                    [value]="uploadProgress" *ngIf="uploadProgress">
-
+  <mat-progress-bar
+    class="progress-bar"
+    mode="determinate"
+    [value]="uploadProgress"
+    *ngIf="uploadProgress"
+  >
   </mat-progress-bar>
 
-            <fa-icon (click)="cancelUpload()" 
-            *ngIf="uploadProgress" [icon]="faXmark"></fa-icon>
-
+  <fa-icon
+    (click)="cancelUpload()"
+    *ngIf="uploadProgress"
+    [icon]="faXmark"
+  ></fa-icon>
 </div>

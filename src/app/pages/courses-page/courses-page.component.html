@@ -1,17 +1,18 @@
 <div class="mt-4">
-    <div *ngFor="let course of userCourses?.ownedCourses">
-        <app-course *ngIf="course.show" [course]="course"></app-course>
-    </div>
+  <div *ngFor="let course of userCourses?.ownedCourses">
+    <app-course *ngIf="course.show" [course]="course"></app-course>
+  </div>
 
-    <div *ngFor="let course of userCourses?.allCourses">
-        <app-course-not-owned *ngIf="course.show" [course]="course"></app-course-not-owned>
-    </div>
+  <div *ngFor="let course of userCourses?.allCourses">
+    <app-course-not-owned
+      *ngIf="course.show"
+      [course]="course"
+    ></app-course-not-owned>
+  </div>
 
-    <mat-card *ngIf="authService.loggedUser?.isAdmin">
-        <mat-card-content (click)="createCourse()">
-            Dodaj kurs <fa-icon [icon]="faPlus"></fa-icon>
-        </mat-card-content>
-    </mat-card>
-    
+  <mat-card *ngIf="authService.loggedUser?.isAdmin">
+    <mat-card-content (click)="createCourse()">
+      Dodaj kurs <fa-icon [icon]="faPlus"></fa-icon>
+    </mat-card-content>
+  </mat-card>
 </div>
-

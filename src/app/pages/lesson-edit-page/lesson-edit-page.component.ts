@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -13,7 +18,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-lesson-edit-page',
   templateUrl: './lesson-edit-page.component.html',
-  styleUrls: ['./lesson-edit-page.component.scss']
+  styleUrls: ['./lesson-edit-page.component.scss'],
 })
 export class LessonEditPageComponent implements OnInit {
   faArrowLeft = faArrowLeft;
@@ -25,25 +30,25 @@ export class LessonEditPageComponent implements OnInit {
   apiUrl: string = environment.apiUrl;
   editorConfig: QuillModules = {
     toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],       
+      ['bold', 'italic', 'underline', 'strike'],
       ['blockquote', 'code-block'],
-  
-      [{ 'header': 1 }, { 'header': 2 }],            
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'script': 'sub'}, { 'script': 'super' }],      
-      [{ 'indent': '-1'}, { 'indent': '+1' }],        
-      [{ 'direction': 'rtl' }],                         
-  
-      [{ 'size': ['small', false, 'large', 'huge'] }],  
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-  
-      [{ 'color': [] }, { 'background': [] }],          
-      [{ 'font': [] }],
-      [{ 'align': [] }],
-  
-      ['clean'],                                         
-  
-      ['link', 'image', 'video']  
+
+      [{ header: 1 }, { header: 2 }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ script: 'sub' }, { script: 'super' }],
+      [{ indent: '-1' }, { indent: '+1' }],
+      [{ direction: 'rtl' }],
+
+      [{ size: ['small', false, 'large', 'huge'] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ color: [] }, { background: [] }],
+      [{ font: [] }],
+      [{ align: [] }],
+
+      ['clean'],
+
+      ['link', 'image', 'video'],
     ],
   };
   public quillForm: FormControl;
@@ -60,7 +65,7 @@ export class LessonEditPageComponent implements OnInit {
     if (!this.authService.loggedUser?.isAdmin) {
       this.router.navigate(['/main-page/course-page']); // Tylko Admin
     }
-    this.quillForm = new FormControl()
+    this.quillForm = new FormControl();
     this.lessonForm = this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
@@ -68,11 +73,9 @@ export class LessonEditPageComponent implements OnInit {
       video: [''],
       isGptActive: [false],
       id: [''],
-      courseId: ['']
+      courseId: [''],
     });
   }
-
-  
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -80,14 +83,14 @@ export class LessonEditPageComponent implements OnInit {
       const courseId = params.get('courseId');
 
       if (lessonId) {
-        this.isCreatingLesson = false; 
+        this.isCreatingLesson = false;
         this.lessonId = lessonId;
 
         this.lessonService.getLessonById(lessonId).subscribe((res) => {
-           this.lessonForm.patchValue(res.data);
-           this.videoUrl = res.data.video;
-           this.quillForm.setValue(res.data.content);
-         });
+          this.lessonForm.patchValue(res.data);
+          this.videoUrl = res.data.video;
+          this.quillForm.setValue(res.data.content);
+        });
       }
 
       if (courseId) {
@@ -99,7 +102,6 @@ export class LessonEditPageComponent implements OnInit {
     this.quillForm.valueChanges.subscribe((newQuillValue) => {
       this.lessonForm.patchValue({ content: newQuillValue });
     });
-  
   }
 
   handleFileUploaded(fileName: string) {
@@ -108,22 +110,17 @@ export class LessonEditPageComponent implements OnInit {
     this.videoUrl = fileName;
   }
 
-
   onSubmit(): void {
     if (this.lessonForm.valid) {
       const lessonData = this.lessonForm.value;
       if (this.isCreatingLesson) {
-        this.lessonService.createLesson(lessonData).subscribe(
-          (response) => {
-            this.router.navigate(['/main-page/course-page']);
-          },
-        );
+        this.lessonService.createLesson(lessonData).subscribe((response) => {
+          this.router.navigate(['/main-page/course-page']);
+        });
       } else {
-        this.lessonService.updateLesson(lessonData).subscribe(
-          (response) => {
-            this.router.navigate(['/main-page/course-page']);
-          },
-        );;
+        this.lessonService.updateLesson(lessonData).subscribe((response) => {
+          this.router.navigate(['/main-page/course-page']);
+        });
       }
     }
   }

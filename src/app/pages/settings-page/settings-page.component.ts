@@ -4,10 +4,10 @@ import { SettingsService } from 'src/app/services/settings.service';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings-page.component.html',
-  styleUrls: ['./settings-page.component.scss']
+  styleUrls: ['./settings-page.component.scss'],
 })
 export class SettingsPageComponent {
-  settingsHtml: string = "";
+  settingsHtml: string = '';
 
   constructor(private settingsService: SettingsService) {
     settingsService.getSettingsHtml().subscribe((res) => {

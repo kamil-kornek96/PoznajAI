@@ -1,120 +1,116 @@
-.welcome-card{
-    display:flex;
-    width:100%;
-    background-color: #131619;
-    overflow: hidden;
+.welcome-card {
+  display: flex;
+  width: 100%;
+  background-color: #131619;
+  overflow: hidden;
 }
 
-.welcome-page{
-    display:flex;
-    position: relative;
-    height: 100%;
-    width:100%;
-    margin: 0 auto;
-    font-family: Plus Jakarta Sans;
-    overflow: hidden;
+.welcome-page {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  font-family: Plus Jakarta Sans;
+  overflow: hidden;
 }
 
-.left{
-    width:50%;
-    height:100%;
+.left {
+  width: 50%;
+  height: 100%;
 }
 
+.right {
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../assets/images/login-page-background.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 24px 0px 0px 24px;
+  transition: 0.5s; // Dodaj animację przejścia na właściwość width
+  display: flex;
+  align-items: center; /* Wyśrodkuj wertykalnie */
+  justify-content: center; /* Wyśrodkuj horyzontalnie */
 
+  &.right-full {
+    left: 0%;
+    border-radius: 0px;
+    animation: pulse 1s infinite; // Ustawienie animacji pulsacji
+  }
 
-.right{
-    position:absolute;
-    left: 50%;
-    width:100%;
-    height:100%;
-    background-image: url("../../../assets/images/login-page-background.svg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 24px 0px 0px 24px;
-    transition: 0.5s; // Dodaj animację przejścia na właściwość width
-    display: flex;
-    align-items: center; /* Wyśrodkuj wertykalnie */
-    justify-content: center; /* Wyśrodkuj horyzontalnie */
-
-    &.right-full {
-        left: 0%;
-        border-radius: 0px;
-        animation: pulse 1s infinite; // Ustawienie animacji pulsacji
+  @keyframes pulse {
+    0% {
+      transform: scale(1); // Początkowy rozmiar
+      box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); // Początkowy cień
     }
-    
-    @keyframes pulse {
-        0% {
-            transform: scale(1); // Początkowy rozmiar
-            box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); // Początkowy cień
-        }
-        50% {
-            transform: scale(1.02); // Rozmiar w połowie animacji
-            box-shadow: 0 0 20px 10px rgba(0, 123, 255, 0.3); // Cień w połowie animacji
-        }
-        100% {
-            transform: scale(1); // Końcowy rozmiar
-            box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); // Końcowy cień
-        }
+    50% {
+      transform: scale(1.02); // Rozmiar w połowie animacji
+      box-shadow: 0 0 20px 10px rgba(0, 123, 255, 0.3); // Cień w połowie animacji
     }
+    100% {
+      transform: scale(1); // Końcowy rozmiar
+      box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); // Końcowy cień
+    }
+  }
 
-    .loader {
-        width: 128px;
-        height: 128px;
-        display: inline-block;
-        position: absolute;
+  .loader {
+    width: 128px;
+    height: 128px;
+    display: inline-block;
+    position: absolute;
+  }
+  .loader::after,
+  .loader::before {
+    content: "";
+    box-sizing: border-box;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    position: absolute;
+    animation: animloader 2s linear infinite;
+  }
+  .loader::after {
+    animation-delay: 1s;
+  }
 
-      }
-      .loader::after,
-      .loader::before {
-        content: '';  
-        box-sizing: border-box;
-        width: 128px;
-        height: 128px;
-        border-radius: 50%;
-        border: 4px solid #FFF;
-        position: absolute;
-        animation: animloader 2s linear infinite;
-      }
-      .loader::after {
-        animation-delay: 1s;
-      }
-      
-      @keyframes animloader {
-        0% {
-          transform: scale(0);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 0;
-        }
-      }
-    
+  @keyframes animloader {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
 }
 
 .loader-container {
-    position: relative;
-    width: 128px;
-    height: 128px;
-    opacity: 0;
-    transition: 0.5s;
+  position: relative;
+  width: 128px;
+  height: 128px;
+  opacity: 0;
+  transition: 0.5s;
 
-    &.loader-center{
-        opacity: 1;
-    }
+  &.loader-center {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 900px) {
   .footer {
-      font-size: 12pt; /* Dostosuj wielkość czcionki do mniejszej szerokości ekranu */
+    font-size: 12pt; /* Dostosuj wielkość czcionki do mniejszej szerokości ekranu */
   }
 
-  .right{
-      display: none;
+  .right {
+    display: none;
   }
 
-  .left{
-      width: 100%;
+  .left {
+    width: 100%;
   }
 }

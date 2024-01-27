@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs'; 
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -12,15 +12,20 @@ import { ToastService } from './toast.service';
 import { toastTypes } from '../models/toast.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private tokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+  private tokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<
+    string | null
+  >(null);
   private apiUrl: string = environment.apiUrl;
   public isLoggedIn: boolean = false;
   public loggedUser?: UserModel;
 
-  constructor(private http: HttpClient, private toast: ToastService) {}
+  constructor(
+    private http: HttpClient,
+    private toast: ToastService,
+  ) {}
 
   getToken(): string | null {
     return sessionStorage.getItem('token');
@@ -38,19 +43,19 @@ export class AuthService {
   checkAuth(): Observable<boolean> {
     if (!this.isLoggedIn) {
       const url = `${this.apiUrl}/user/auth`;
-      return this.http.get<{ data:UserModel}>(url).pipe(
+      return this.http.get<{ data: UserModel }>(url).pipe(
         tap(
           (response) => {
-            console.log(response)
+            console.log(response);
             this.isLoggedIn = true;
             this.loggedUser = response.data;
           },
           (error) => {
             this.isLoggedIn = false;
-          }
+          },
         ),
         map(() => true),
-        catchError(() => of(false)) 
+        catchError(() => of(false)),
       );
     } else {
       return of(true);
@@ -61,36 +66,35 @@ export class AuthService {
     const url = `${this.apiUrl}/user/login`;
     return this.http.post(url, user).pipe(
       tap(
-        (res:any) => {
+        (res: any) => {
           this.toast.initiate({
             type: toastTypes.success,
-            content: res.message
+            content: res.message,
           });
         },
         (error) => {
-          if(error.error.message == "Account not activated"){
+          if (error.error.message == 'Account not activated') {
             this.toast.initiate({
               type: toastTypes.error,
-              content: "Konto nie zostało aktywowane. Sprawdź email."
+              content: 'Konto nie zostało aktywowane. Sprawdź email.',
             });
-          }
-          else{
+          } else {
             this.toast.initiate({
               type: toastTypes.error,
-              content: "Niepoprawna nazwa użytkownika i/lub hasło."
+              content: 'Niepoprawna nazwa użytkownika i/lub hasło.',
             });
           }
-        }
-      )
+        },
+      ),
     );
   }
 
-  logout(){
+  logout() {
     localStorage.setItem('logoutMsg', 'true');
-    this.setToken(null)
+    this.setToken(null);
   }
 
-  loggedOut(){
+  loggedOut() {
     return localStorage.getItem('logoutMsg') == 'true' ? true : false;
   }
 
@@ -98,29 +102,26 @@ export class AuthService {
     const url = `${this.apiUrl}/user/register`;
     return this.http.post(url, user).pipe(
       tap(
-        (res:any) => {
-        },
+        (res: any) => {},
         (error) => {
-          let message = ""
-          if(error.error.message == "Username is taken."){
-            message = "Konto o podanym adresie email już istnieje."
-          }
-          else{
-            message = "Podczas rejestracji wystąpił nieoczekiwany błąd."
+          let message = '';
+          if (error.error.message == 'Username is taken.') {
+            message = 'Konto o podanym adresie email już istnieje.';
+          } else {
+            message = 'Podczas rejestracji wystąpił nieoczekiwany błąd.';
           }
           this.toast.initiate({
             type: toastTypes.error,
-            content: message
+            content: message,
           });
-        }
-      )
+        },
+      ),
     );
   }
 
   activateEmail(token: string): Observable<any> {
     const url = `${this.apiUrl}/user/activate`;
-    console.log(url)
-    return this.http.post(url, {token });
+    console.log(url);
+    return this.http.post(url, { token });
   }
-  
 }

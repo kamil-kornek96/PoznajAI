@@ -4,7 +4,10 @@
   class="toast_wrapper"
   [@openClose]="toastService.data && toastService.data.show ? 'open' : 'closed'"
 >
-<div class="content"><img class="icon" [src]="iconPath"><span [class]="textClass">{{text}}</span>{{ toastService.data.content }}</div>
-
-
+  <div class="content">
+    <img class="icon" [src]="iconPath" /><span [class]="textClass">{{
+      text
+    }}</span
+    >{{ toastService.data.content }}
+  </div>
 </div>

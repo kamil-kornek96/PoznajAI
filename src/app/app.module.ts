@@ -7,10 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +18,7 @@ import { AuthInterceptor } from './http/oauth.interceptor';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatIconModule } from '@angular/material/icon';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MainPageComponent } from './pages/main-page/main-page.component';
@@ -34,13 +34,13 @@ import { CoursesEditPageComponent } from './pages/courses-edit-page/courses-edit
 import { LessonEditPageComponent } from './pages/lesson-edit-page/lesson-edit-page.component';
 import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
 import { VideoPlayerComponent } from './shared/components/video-player/video-player.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { HubConnectionService } from './services/hub-connection.service';
-import { CustomInputComponent } from './shared/components/custom-input/custom-input.component';
-import { CustomCheckboxComponent } from './shared/components/custom-checkbox/custom-checkbox.component';
-import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
+import { InputComponent } from './shared/components/input/input.component';
+import { CheckboxComponent } from './shared/components/checkbox/checkbox.component';
+import { ButtonComponent } from './shared/components/button/button.component';
 import { NavHeaderComponent } from './shared/components/nav-header/nav-header.component';
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
 import { RegisterFormComponent } from './shared/components/register-form/register-form.component';
@@ -63,9 +63,9 @@ import { ActivationPageComponent } from './pages/activation-page/activation-page
     FileUploadComponent,
     VideoPlayerComponent,
     SettingsPageComponent,
-    CustomInputComponent,
-    CustomCheckboxComponent,
-    CustomButtonComponent,
+    InputComponent,
+    CheckboxComponent,
+    ButtonComponent,
     ToastComponent,
     NavHeaderComponent,
     LoginFormComponent,
@@ -89,7 +89,7 @@ import { ActivationPageComponent } from './pages/activation-page/activation-page
     MatExpansionModule,
     FontAwesomeModule,
     ToastrModule.forRoot({
-      timeOut: 3000, 
+      timeOut: 3000,
       preventDuplicates: true,
     }),
     QuillModule.forRoot(),
@@ -97,29 +97,34 @@ import { ActivationPageComponent } from './pages/activation-page/activation-page
       modules: {
         syntax: true,
         toolbar: [
-          ['bold', 'italic', 'underline', 'strike'],        
+          ['bold', 'italic', 'underline', 'strike'],
           ['blockquote', 'code-block'],
-      
-          [{ 'header': 1 }, { 'header': 2 }],               
-          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-          [{ 'script': 'sub'}, { 'script': 'super' }],      
-          [{ 'indent': '-1'}, { 'indent': '+1' }],          
-          [{ 'direction': 'rtl' }],                         
-      
-          [{ 'size': ['small', false, 'large', 'huge'] }],  
-          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      
-          [{ 'color': [] }, { 'background': [] }],          
-          [{ 'font': [] }],
-          [{ 'align': [] }],
-      
-          ['clean'],                                         
-      
-          ['link', 'image', 'video']                         
-        ]}}),
+
+          [{ header: 1 }, { header: 2 }],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          [{ script: 'sub' }, { script: 'super' }],
+          [{ indent: '-1' }, { indent: '+1' }],
+          [{ direction: 'rtl' }],
+
+          [{ size: ['small', false, 'large', 'huge'] }],
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+          [{ color: [] }, { background: [] }],
+          [{ font: [] }],
+          [{ align: [] }],
+
+          ['clean'],
+
+          ['link', 'image', 'video'],
+        ],
+      },
+    }),
   ],
   providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
+    },
     HubConnectionService,
     {
       provide: HTTP_INTERCEPTORS,
@@ -127,6 +132,6 @@ import { ActivationPageComponent } from './pages/activation-page/activation-page
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

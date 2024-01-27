@@ -12,8 +12,16 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
 import { ActivationPageComponent } from './pages/activation-page/activation-page.component';
 
 const routes: Routes = [
-  { path: 'welcome', component: WelcomePageComponent, canActivate: [AuthGuardNotLoggedIn] },
-  { path: 'activation', component: ActivationPageComponent, canActivate: [AuthGuardNotLoggedIn] },
+  {
+    path: 'welcome',
+    component: WelcomePageComponent,
+    canActivate: [AuthGuardNotLoggedIn],
+  },
+  {
+    path: 'activation',
+    component: ActivationPageComponent,
+    canActivate: [AuthGuardNotLoggedIn],
+  },
   {
     path: 'main-page',
     component: MainPageComponent,
@@ -26,14 +34,15 @@ const routes: Routes = [
       { path: 'edit-lesson/:lessonId', component: LessonEditPageComponent },
       { path: 'edit-course/:id', component: CoursesEditPageComponent },
       { path: 'create-course', component: CoursesEditPageComponent },
-      { path: 'settings', component: SettingsPageComponent}
-    ]
+      { path: 'settings', component: SettingsPageComponent },
+    ],
   },
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+  { path: '**', redirectTo: '/welcome', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

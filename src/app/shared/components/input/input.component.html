@@ -1,0 +1,16 @@
+<div [class]="wrapperClass">
+  <div *ngIf="inputLabel" class="label">{{ inputLabel }}</div>
+  <input
+    [type]="type"
+    [style]="inputIconStyle"
+    [disabled]="disabled"
+    [class]="inputClass"
+    [placeholder]="inputPlaceholder"
+    [(ngModel)]="value"
+    (input)="handleOnChange($event)"
+  />
+  <div *ngIf="inputHint" [class]="hintTextClass">
+    <div [class]="hintIconClass"></div>
+    {{ inputHint }}
+  </div>
+</div>
