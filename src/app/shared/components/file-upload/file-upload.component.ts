@@ -44,8 +44,8 @@ export class FileUploadComponent {
         ) {
           this.uploadProgress = Math.round(100 * (event.loaded / event.total));
         } else if (event.type == HttpEventType.Response && event.body) {
-          const uploadedFileName = (event.body as any).fileName;
-          this.fileUploaded.emit(uploadedFileName);
+          const uploadedFileName = event.body as any;
+          this.fileUploaded.emit(uploadedFileName.data.fileName);
         }
       });
     }

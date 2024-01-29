@@ -6,7 +6,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
-  @Input() text: string = '';
-  @Input() type: 'big' | 'normal' | 'small' = 'normal';
+  @Input() size: 'big' | 'normal' | 'small' = 'normal';
+  @Input() style: 'default' | 'outline' | 'grey-1' | 'grey-2' | 'grey-3' =
+    'default';
   @Input() disabled: boolean = false;
+  @Input() type: string = 'submit';
 }

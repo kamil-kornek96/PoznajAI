@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { CourseUpdateModel } from 'src/app/models/course-update.model';
 
@@ -19,8 +18,11 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CoursesEditPageComponent implements OnInit {
   course: CourseUpdateModel | undefined;
   isCreatingCourse: boolean = true;
-  courseForm: FormGroup;
-  faArrowLeft = faArrowLeft;
+  form: CourseUpdateModel = {
+    id: '',
+    title: '',
+    description: '',
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -34,12 +36,6 @@ export class CoursesEditPageComponent implements OnInit {
     if (!this.authService.loggedUser?.isAdmin) {
       this.router.navigate(['/main-page/course-page']);
     }
-
-    this.courseForm = this.formBuilder.group({
-      id: [''],
-      title: [''],
-      description: [''],
-    });
   }
 
   ngOnInit(): void {
@@ -50,19 +46,16 @@ export class CoursesEditPageComponent implements OnInit {
         this.isCreatingCourse = false;
 
         this.courseService.getCourseToUpdate(courseId).subscribe((res) => {
-          this.course = res.data;
-          this.courseForm.patchValue(res.data);
+          this.form = res.data;
         });
       }
     });
   }
 
   onSubmit(): void {
-    if (this.courseForm.valid) {
-      const formData = this.courseForm.value;
-
+    if (this.form) {
       if (this.isCreatingCourse) {
-        this.courseService.createCourse(formData).subscribe(
+        this.courseService.createCourse(this.form).subscribe(
           (response) => {
             this.router.navigate(['/main-page/course-page']);
           },
@@ -74,9 +67,7 @@ export class CoursesEditPageComponent implements OnInit {
           },
         );
       } else {
-        const updatedCourseData = formData as CourseUpdateModel;
-
-        this.courseService.updateCourse(updatedCourseData).subscribe(
+        this.courseService.updateCourse(this.form).subscribe(
           (response) => {
             this.router.navigate(['/main-page/course-page']);
           },

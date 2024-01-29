@@ -1,4 +1,22 @@
-.lesson {
-  background-color: rgb(105, 105, 105);
-  cursor: pointer;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 100%;
+}
+.lesson-form {
+  margin: 12px;
+}
+
+:host {
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.ql-editor {
+  border: 1px solid red !important;
 }

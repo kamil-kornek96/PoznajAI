@@ -21,13 +21,15 @@ export class LessonComponent {
     private toastr: ToastrService,
   ) {}
 
-  editLesson() {
+  editLesson(event: Event) {
+    event.stopPropagation();
     if (this.lesson && this.lesson.id) {
       this.router.navigate(['main-page/edit-lesson', this.lesson.id]);
     }
   }
 
-  deleteLesson() {
+  deleteLesson(event: Event) {
+    event.stopPropagation();
     if (this.lesson && this.lesson.id) {
       this.lessonService.deleteLesson(this.lesson.id).subscribe(
         (response) => {

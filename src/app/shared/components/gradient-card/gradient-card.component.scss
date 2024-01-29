@@ -1,0 +1,19 @@
+.gradient-card {
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 0 0;
+  border-radius: 12px;
+  border-top: 1px solid var(--Glass-Stroke, rgba(255, 255, 255, 0.08));
+  background: var(
+    --Glass-Fill,
+    linear-gradient(
+      118deg,
+      rgba(215, 237, 237, 0.16) -47.79%,
+      rgba(204, 235, 235, 0) 100%
+    )
+  );
+}

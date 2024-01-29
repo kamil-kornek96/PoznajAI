@@ -119,6 +119,11 @@ export class AuthService {
     );
   }
 
+  claimCourse(courseId: string) {
+    const url = `${this.apiUrl}/user/courses/${courseId}`;
+    return this.http.post(url, null);
+  }
+
   activateEmail(token: string): Observable<any> {
     const url = `${this.apiUrl}/user/activate`;
     console.log(url);

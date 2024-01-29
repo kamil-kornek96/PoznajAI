@@ -62,6 +62,7 @@ export class LessonPageComponent {
         .getLessonById(this.lessonId)
         .subscribe((response) => {
           this.lesson = response.data;
+          console.log(this.lesson);
           this.safeContent = this.sanitizer.bypassSecurityTrustHtml(
             response.data.content.replace(
               '<img',

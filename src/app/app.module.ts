@@ -24,12 +24,11 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { CoursesPageComponent } from './pages/courses-page/courses-page.component';
-import { CourseComponent } from './shared/components/course/course.component';
 import { LessonComponent } from './shared/components/lesson/lesson.component';
 import { LessonPageComponent } from './pages/lesson-page/lesson-page.component';
 import { QuillModule } from 'ngx-quill';
 import { QuillConfigModule } from 'ngx-quill/config';
-import { CourseNotOwnedComponent } from './shared/components/course-not-owned/course-not-owned.component';
+import { CourseComponent } from './shared/components/course/course.component';
 import { CoursesEditPageComponent } from './pages/courses-edit-page/courses-edit-page.component';
 import { LessonEditPageComponent } from './pages/lesson-edit-page/lesson-edit-page.component';
 import { FileUploadComponent } from './shared/components/file-upload/file-upload.component';
@@ -45,6 +44,7 @@ import { NavHeaderComponent } from './shared/components/nav-header/nav-header.co
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
 import { RegisterFormComponent } from './shared/components/register-form/register-form.component';
 import { ActivationPageComponent } from './pages/activation-page/activation-page.component';
+import { GradientCardComponent } from './shared/components/gradient-card/gradient-card.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,6 @@ import { ActivationPageComponent } from './pages/activation-page/activation-page
     CourseComponent,
     LessonComponent,
     LessonPageComponent,
-    CourseNotOwnedComponent,
     CoursesEditPageComponent,
     LessonEditPageComponent,
     FileUploadComponent,
@@ -70,6 +69,7 @@ import { ActivationPageComponent } from './pages/activation-page/activation-page
     NavHeaderComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    GradientCardComponent,
   ],
   imports: [
     FileUploadModule,

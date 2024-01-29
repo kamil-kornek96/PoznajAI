@@ -1,35 +1,41 @@
-<mat-expansion-panel
-  *ngIf="course && course.lessons && course.lessons.length > 0"
-  class="expansion-panel my-2"
-  [expanded]="true"
->
-  <mat-expansion-panel-header class="expansion-panel-header">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <h3>
-            {{ course.title }}
-            <fa-icon (click)="editCourse()" [icon]="faPencil"></fa-icon>
-            <fa-icon (click)="deleteCourse()" [icon]="faXmark"></fa-icon>
-          </h3>
-          <h5 class="ms-2">{{ course.description }}</h5>
-        </div>
-        <!-- <div class="col-md-1">
-                    <button class="btn btn-primary" (click)="buyCourse()">Kup</button>
-                  </div> -->
-      </div>
+<app-gradient-card *ngIf="course">
+  <div class="title">
+    <img class="icon" src="assets/icons/folder.svg" />
+    {{ course.title }}
+    <app-button
+      *ngIf="authService.loggedUser?.isAdmin"
+      (click)="editCourse()"
+      [style]="'outline'"
+      [size]="'small'"
+    >
+      Edytuj
+    </app-button>
+    <app-button
+      *ngIf="authService.loggedUser?.isAdmin"
+      (click)="deleteCourse()"
+      [style]="'outline'"
+      [size]="'small'"
+    >
+      Usuń
+    </app-button>
+  </div>
+  <div class="description">
+    <div class="description-text">
+      {{ course.description }}
     </div>
-  </mat-expansion-panel-header>
-  <div class="container-fluid">
-    <div *ngFor="let lesson of course.lessons">
-      <app-lesson [owned]="true" [lesson]="lesson"></app-lesson>
+    <div *ngIf="!owned" class="get-course-card">
+      Moduł dostępny w pakiecie Programista
+      <app-button [size]="'small'" (click)="claimCourse()">Kup</app-button>
     </div>
   </div>
-  <div *ngIf="authService.loggedUser?.isAdmin" class="container-fluid">
-    <div>
-      <mat-card class="lesson my-3" (click)="createLesson()">
-        <mat-card-content> Dodaj lekcję </mat-card-content>
-      </mat-card>
-    </div>
+  <div class="lessons" *ngFor="let lesson of course.lessons">
+    <app-lesson
+      *ngIf="lesson.show"
+      [owned]="false"
+      [lesson]="lesson"
+    ></app-lesson>
   </div>
-</mat-expansion-panel>
+  <app-button *ngIf="authService.loggedUser?.isAdmin" (click)="createLesson()">
+    Dodaj lekcję
+  </app-button>
+</app-gradient-card>

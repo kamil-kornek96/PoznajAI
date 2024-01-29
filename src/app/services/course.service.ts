@@ -9,6 +9,8 @@ import { CourseUpdateModel } from '../models/course-update.model';
 
 import { ToastrService } from 'ngx-toastr';
 import { CourseModel } from '../models/course.model';
+import { ToastService } from './toast.service';
+import { toastTypes } from '../models/toast.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +20,7 @@ export class CourseService {
 
   constructor(
     private http: HttpClient,
-    private toastr: ToastrService,
+    private toast: ToastService,
   ) {}
 
   getUserCourses(): Observable<{ data: UserCoursesModel }> {
@@ -43,10 +45,16 @@ export class CourseService {
     return this.http.post(`${this.apiUrl}/course`, courseData).pipe(
       tap(
         (res: any) => {
-          this.toastr.success(res.message);
+          this.toast.initiate({
+            type: toastTypes.success,
+            content: 'Utworzono kurs.',
+          });
         },
         (error) => {
-          this.toastr.error(error.error.message);
+          this.toast.initiate({
+            type: toastTypes.error,
+            content: 'Podczas tworzenia kursu wystąpił nieoczekiwany błąd.',
+          });
         },
       ),
     );
@@ -64,10 +72,17 @@ export class CourseService {
       .pipe(
         tap(
           (res: any) => {
-            this.toastr.success(res.message);
+            this.toast.initiate({
+              type: toastTypes.success,
+              content: 'Zaktualizowano kurs.',
+            });
           },
           (error) => {
-            this.toastr.error(error.error.message);
+            this.toast.initiate({
+              type: toastTypes.error,
+              content:
+                'Podczas aktualizacji kursu wystąpił nieoczekiwany błąd.',
+            });
           },
         ),
       );
@@ -77,10 +92,16 @@ export class CourseService {
     return this.http.delete(`${this.apiUrl}/course/${courseId}`).pipe(
       tap(
         (res: any) => {
-          this.toastr.success(res.message);
+          this.toast.initiate({
+            type: toastTypes.success,
+            content: 'Usunięto kurs.',
+          });
         },
         (error) => {
-          this.toastr.error(error.error.message);
+          this.toast.initiate({
+            type: toastTypes.error,
+            content: 'Podczas usuwania kursu wystąpił nieoczekiwany błąd.',
+          });
         },
       ),
     );

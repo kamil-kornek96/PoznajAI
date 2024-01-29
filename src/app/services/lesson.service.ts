@@ -6,7 +6,8 @@ import { environment } from 'src/environments/environment';
 import { LessonDetailsModel } from '../models/lesson-details.model';
 import { LessonCreateModel } from '../models/lesson-create.model';
 
-import { ToastrService } from 'ngx-toastr';
+import { ToastService } from './toast.service';
+import { toastTypes } from '../models/toast.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class LessonService {
 
   constructor(
     private http: HttpClient,
-    private toastr: ToastrService,
+    private toast: ToastService,
   ) {}
 
   getLessonById(lessonId: string): Observable<{ data: LessonDetailsModel }> {
@@ -29,10 +30,16 @@ export class LessonService {
     return this.http.post(`${this.apiUrl}/lesson/`, lessonData).pipe(
       tap(
         (res: any) => {
-          this.toastr.success(res.message);
+          this.toast.initiate({
+            type: toastTypes.success,
+            content: 'Utworzono lekcję.',
+          });
         },
         (error) => {
-          this.toastr.error(error.error.message);
+          this.toast.initiate({
+            type: toastTypes.error,
+            content: 'Podczas tworzenia lekcji wystąpił nieoczekiwany błąd.',
+          });
         },
       ),
     );
@@ -44,10 +51,17 @@ export class LessonService {
       .pipe(
         tap(
           (res: any) => {
-            this.toastr.success(res.message);
+            this.toast.initiate({
+              type: toastTypes.success,
+              content: 'Zaktualizowano lekcję.',
+            });
           },
           (error) => {
-            this.toastr.error(error.error.message);
+            this.toast.initiate({
+              type: toastTypes.error,
+              content:
+                'Podczas aktualizacji lekcji wystąpił nieoczekiwany błąd.',
+            });
           },
         ),
       );
@@ -57,10 +71,16 @@ export class LessonService {
     return this.http.delete(`${this.apiUrl}/lesson/${courseId}`).pipe(
       tap(
         (res: any) => {
-          this.toastr.success(res.message);
+          this.toast.initiate({
+            type: toastTypes.success,
+            content: 'Usunięto lekcję.',
+          });
         },
         (error) => {
-          this.toastr.error(error.error.message);
+          this.toast.initiate({
+            type: toastTypes.error,
+            content: 'Podczas usuwania lekcji wystąpił nieoczekiwany błąd.',
+          });
         },
       ),
     );
