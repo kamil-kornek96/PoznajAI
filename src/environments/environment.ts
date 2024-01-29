@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44376/api',
-  url: 'https://localhost:44376',
-  openApiKey: '123'
+  apiUrl: 'https://poznajai-api.azurewebsites.net/api',
+  url: 'https://poznajai-api.azurewebsites.net',
+  openApiKey: '123',
 };
