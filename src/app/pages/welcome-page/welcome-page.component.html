@@ -1,9 +1,23 @@
 <div class="welcome-page">
   <div class="welcome-card">
-    <app-login-form *ngIf="isLogin" class="left" [(isLogin)]="isLogin" [loaderOn]="loaderOn" [loaderOff]="loaderOff"></app-login-form>
-    <app-register-form *ngIf="!isLogin" class="left" [(isLogin)]="isLogin" [loaderOn]="loaderOn" [loaderOff]="loaderOff"></app-register-form>
-    <div [class]="rightClasses">    <div [class]="loaderClasses">
-      <span class="loader"></span>
-  </div></div>
+    <app-login-form
+      *ngIf="isLogin"
+      class="left"
+      [(isLogin)]="isLogin"
+      [loaderOn]="loaderOn"
+      [loaderOff]="loaderOff"
+    ></app-login-form>
+    <app-register-form
+      *ngIf="!isLogin"
+      class="left"
+      [(isLogin)]="isLogin"
+      [loaderOn]="loaderOn"
+      [loaderOff]="loaderOff"
+    ></app-register-form>
+    <div [class]="rightClasses">
+      <div [class]="loaderClasses">
+        <span class="loader"></span>
+      </div>
+    </div>
   </div>
 </div>

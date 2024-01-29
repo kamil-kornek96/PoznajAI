@@ -1,41 +1,43 @@
-<div>
-  <h2>{{ isCreatingLesson ? 'Create Lesson' : 'Edit Lesson' }} <fa-icon (click)="goBack()" [icon]="faArrowLeft"></fa-icon></h2>
-  <form [formGroup]="lessonForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="title">Title:</label>
-      <input
-        type="text"
-        id="title"
-        formControlName="title"
-        class="form-control"
-        required
-      >
-    </div>
-    <div class="form-group">
-      <quill-editor [formControl]="quillForm" [modules]="editorConfig" style="background-color: white; color:black"></quill-editor>
-    </div>
-    <div class="form-group">
-      <label for="duration">Duration:</label>
-      <input
-        type="text"
-        id="duration"
-        formControlName="duration"
-        class="form-control"
-      >
-    </div>
+<div class="lesson-form">
+  <h2>Lekcja</h2>
+  <form (ngSubmit)="onSubmit()">
+    <app-input
+      [inputLabel]="'Tytuł'"
+      type="text"
+      [(value)]="form.title"
+    ></app-input>
+    <app-input
+      [inputLabel]="'Czas trwania'"
+      type="text"
+      [(value)]="form.duration"
+    ></app-input>
+    <app-checkbox
+      [label]="'Włączyć Czat GPT'"
+      type="text"
+      [(checked)]="form.isGptActive"
+    ></app-checkbox>
+    <quill-editor
+      #quillEditor
+      [formControl]="quillForm"
+      [modules]="editorConfig"
+      (onFocus)="editorFocus()"
+      (onBlur)="editorBlur()"
+      placeholder=""
+    ></quill-editor>
     <app-video-player [videoUrl]="this.videoUrl"></app-video-player>
     <file-upload (fileUploaded)="handleFileUploaded($event)"></file-upload>
-    <div class="form-group">
-      <label for="isGptActive">Is GPT Active:</label>
-      <input
-        type="checkbox"
-        id="isGptActive"
-        formControlName="isGptActive"
-        class="form-check-input"
+    <div class="buttons">
+      <app-button type="submit" [style]="'default'" [size]="'normal'">{{
+        isCreatingLesson ? "Stwórz lekcję" : "Zaktualizuj lekcję"
+      }}</app-button>
+      <app-button
+        (click)="goBack()"
+        type="button"
+        [style]="'grey-1'"
+        [size]="'normal'"
       >
+        Wróc
+      </app-button>
     </div>
-    <button type="submit" class="btn btn-primary">
-      {{ isCreatingLesson ? 'Create Lesson' : 'Update Lesson' }}
-    </button>
   </form>
 </div>

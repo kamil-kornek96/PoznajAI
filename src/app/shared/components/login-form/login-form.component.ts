@@ -8,41 +8,38 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent {
-  login: LoginModel = {email: '', password: ''};
+  login: LoginModel = { email: '', password: '' };
   isChecked = false;
   @Input() loaderOn?: Function;
   @Input() loaderOff?: Function;
   @Input() isLogin: boolean = true;
   @Output() isLoginChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private authService: AuthService,private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
-  
-
-
-  register(){
+  register() {
     this.isLogin = false;
-    this.isLoginChange.emit(this.isLogin)
+    this.isLoginChange.emit(this.isLogin);
   }
 
   onSubmit(): void {
-    if(this.loaderOn)
-      this.loaderOn();
-  
+    if (this.loaderOn) this.loaderOn();
+
     this.authService.login(this.login).subscribe(
       (response) => {
-          this.authService.setToken(response.data.token);
-          this.router.navigate(['/main-page']);
-          if(this.loaderOff)
-            this.loaderOff();
+        this.authService.setToken(response.data.token);
+        this.router.navigate(['/main-page']);
+        if (this.loaderOff) this.loaderOff();
       },
       (error) => {
-        if(this.loaderOff)
-          this.loaderOff();
-      }
+        if (this.loaderOff) this.loaderOff();
+      },
     );
   }
 }

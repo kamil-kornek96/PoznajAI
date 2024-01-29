@@ -1,8 +1,22 @@
-.lesson {
-    background-color: rgb(105, 105, 105);
-    cursor: pointer;
+.title {
+  display: flex;
+  gap: 8px;
 }
 
-.ng-fa-icon {
-    margin-left: 15px;
+.time {
+  display: flex;
+  gap: 12px;
+  min-width: 150px;
+  justify-content: end;
+}
+
+.lesson {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+:host {
+  width: 100%;
+  cursor: pointer;
 }

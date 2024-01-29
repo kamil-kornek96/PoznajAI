@@ -6,11 +6,13 @@ import { map, take } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuardNotLoggedIn implements CanActivate {
-
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   canActivate(): Observable<boolean> {
     return this.authService.checkAuth().pipe(
@@ -22,7 +24,7 @@ export class AuthGuardNotLoggedIn implements CanActivate {
         } else {
           return true;
         }
-      })
+      }),
     );
   }
 }

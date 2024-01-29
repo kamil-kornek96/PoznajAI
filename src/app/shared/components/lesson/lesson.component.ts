@@ -8,26 +8,32 @@ import { LessonService } from 'src/app/services/lesson.service';
 @Component({
   selector: 'app-lesson',
   templateUrl: './lesson.component.html',
-  styleUrls: ['./lesson.component.scss']
+  styleUrls: ['./lesson.component.scss'],
 })
 export class LessonComponent {
   faPencil = faPencil;
   faXmark = faXmark;
   @Input() lesson: any;
   @Input() owned: any;
-  constructor(private router: Router, private lessonService: LessonService, private toastr: ToastrService) {}
+  constructor(
+    private router: Router,
+    private lessonService: LessonService,
+    private toastr: ToastrService,
+  ) {}
 
-  editLesson(){
+  editLesson(event: Event) {
+    event.stopPropagation();
     if (this.lesson && this.lesson.id) {
       this.router.navigate(['main-page/edit-lesson', this.lesson.id]);
     }
   }
 
-  deleteLesson(){
+  deleteLesson(event: Event) {
+    event.stopPropagation();
     if (this.lesson && this.lesson.id) {
       this.lessonService.deleteLesson(this.lesson.id).subscribe(
         (response) => {
-          if(this.lesson){
+          if (this.lesson) {
             this.lesson.show = false;
             this.router.navigate(['main-page']);
           }
@@ -35,9 +41,9 @@ export class LessonComponent {
         (error) => {
           this.toastr.error(
             'An error occurred while deleting the lesson',
-            'Error'
+            'Error',
           );
-        }
+        },
       );
     }
   }

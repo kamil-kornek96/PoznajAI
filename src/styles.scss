@@ -1,44 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-@import 'assets/quill.bubble.css';
-@import 'assets/quill.snow.css';
-@import 'assets/quill.core.css';
+@import "assets/quill.bubble.css";
+@import "assets/quill.snow.scss";
+@import "assets/quill.core.css";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 @import "../node_modules/video.js/src/css/video-js.scss";
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 
-html, body { height: 100%;background-color: #1A1D21; color:white; overflow: hidden;}
-body { margin: 0; }
+html,
+body {
+  height: 100%;
+  background-color: #1a1d21;
+  color: white;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+}
 
-body,html {
+body,
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+button {
   font-family: Plus Jakarta Sans;
 }
 
-.pointer, .ng-fa-icon {
-    cursor: pointer;
+.pointer,
+.ng-fa-icon {
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.384); 
-    border-radius: 5px;
-    margin: 5px 5px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: rgba(113, 101, 121, 0.534); 
-    border-radius: 5px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(162, 155, 167, 0.534);  
-  }
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.384);
+  border-radius: 5px;
+  margin: 5px 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(113, 101, 121, 0.534);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(162, 155, 167, 0.534);
+}
 
 /* Styl dla komunikatów sukcesu */
 .toast-success {

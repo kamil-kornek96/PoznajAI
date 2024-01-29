@@ -8,13 +8,15 @@ import { toastTypes } from '../models/toast.model';
 
 import { ToastService } from '../services/toast.service';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuardLoggedIn implements CanActivate {
-
-  constructor(private authService: AuthService, private router: Router, private toast: ToastService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toast: ToastService,
+  ) {}
 
   canActivate(): Observable<boolean> {
     return this.authService.checkAuth().pipe(
@@ -24,16 +26,16 @@ export class AuthGuardLoggedIn implements CanActivate {
           return true;
         } else {
           this.router.navigate(['/welcome']);
-          if(this.authService.loggedOut()){
+          if (this.authService.loggedOut()) {
             this.toast.initiate({
               type: toastTypes.success,
-              content: "Wylogowano."
+              content: 'Wylogowano.',
             });
           }
-          localStorage.setItem('logoutMsg','false')
+          localStorage.setItem('logoutMsg', 'false');
           return false;
         }
-      })
+      }),
     );
   }
 }

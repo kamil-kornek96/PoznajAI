@@ -1,44 +1,51 @@
-.nav-item-active{
-    display: flex;
-    width: 296px;
-    height: 48px;
-    padding: 14px 16px;
-    align-items: center;
-    gap: 16px;
-    border-radius: 8px;
-    border-top: 1px solid var(--glass-stroke, rgba(255, 255, 255, 0.08));
-    background: var(--glass-fill, linear-gradient(118deg, rgba(215, 237, 237, 0.16) -47.79%, rgba(204, 235, 235, 0.00) 100%));
-    color: var(--noble-black-100, #E8E9E9);
-    text-align: center;
+.nav-item-active {
+  display: flex;
+  width: 296px;
+  height: 48px;
+  padding: 14px 16px;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  border-top: 1px solid var(--glass-stroke, rgba(255, 255, 255, 0.08));
+  background: var(
+    --glass-fill,
+    linear-gradient(
+      118deg,
+      rgba(215, 237, 237, 0.16) -47.79%,
+      rgba(204, 235, 235, 0) 100%
+    )
+  );
+  color: var(--noble-black-100, #e8e9e9);
+  text-align: center;
 
-    /* Body/M/SemiBold */
-    font-family: Plus Jakarta Sans;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 20px; /* 142.857% */
-    letter-spacing: 0.15px;
+  /* Body/M/SemiBold */
+  font-family: Plus Jakarta Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.15px;
 }
 
-.nav-item{
-    display: flex;
-    width: 296px;
-    height: 48px;
-    padding: 14px 16px;
-    align-items: center;
-    gap: 16px;
-    border-radius: 8px;
-        /* Body/M/SemiBold */
-        font-family: Plus Jakarta Sans;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 20px; /* 142.857% */
-        letter-spacing: 0.15px;
-        text-decoration: none; 
-        color: inherit; 
+.nav-item {
+  display: flex;
+  width: 296px;
+  height: 48px;
+  padding: 14px 16px;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  /* Body/M/SemiBold */
+  font-family: Plus Jakarta Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.15px;
+  text-decoration: none;
+  color: inherit;
 }
 
-.nav{
-    padding: 24px 8px;
+.nav {
+  padding: 24px 8px;
 }

@@ -5,98 +5,111 @@
     <div class="description">I zacznij poznawać z nami świat AI!</div>
     <div class="form-inputs">
       <div class="row">
-          <div class="col">
-            <app-custom-input 
-              [inputIcon]="'user'" 
-              [type]="'email'" 
-              [(value)]="register.firstName"  
-              [inputStyle]="firstNameInputStyle" 
-              [disabled]="false" 
-              [inputPlaceholder]="'Imie'" 
-              [inputLabel]="''" 
-              [inputHint]="firstNameInputError">
-            </app-custom-input>
-          </div>
-          <div class="col">
-            <app-custom-input 
-            [inputIcon]="'user'" 
-            [type]="'email'" 
-            [(value)]="register.lastName"  
-            [inputStyle]="lastNameInputStyle" 
-            [disabled]="false" 
-            [inputPlaceholder]="'Nazwisko'" 
-            [inputLabel]="''" 
-            [inputHint]="lastNameInputError">
-          </app-custom-input>
-          </div>
+        <div class="col">
+          <app-input
+            [inputIcon]="'user'"
+            [type]="'email'"
+            [(value)]="register.firstName"
+            [inputStyle]="firstNameInputStyle"
+            [disabled]="false"
+            [inputPlaceholder]="'Imie'"
+            [inputLabel]="''"
+            [inputHint]="firstNameInputError"
+          >
+          </app-input>
         </div>
+        <div class="col">
+          <app-input
+            [inputIcon]="'user'"
+            [type]="'email'"
+            [(value)]="register.lastName"
+            [inputStyle]="lastNameInputStyle"
+            [disabled]="false"
+            [inputPlaceholder]="'Nazwisko'"
+            [inputLabel]="''"
+            [inputHint]="lastNameInputError"
+          >
+          </app-input>
+        </div>
+      </div>
       <div class="row">
         <div class="col">
-          <app-custom-input 
-            [inputIcon]="'letter'" 
-            [type]="'email'" 
-            [(value)]="register.email"  
-            [inputStyle]="emailInputStyle" 
-            [disabled]="false" 
-            [inputPlaceholder]="'E-mail'" 
-            [inputLabel]="''" 
+          <app-input
+            [inputIcon]="'letter'"
+            [type]="'email'"
+            [(value)]="register.email"
+            [inputStyle]="emailInputStyle"
+            [disabled]="false"
+            [inputPlaceholder]="'E-mail'"
+            [inputLabel]="''"
             [inputHint]="emailInputError"
-            (input)="validateEmail()">
-          </app-custom-input>
+            (input)="validateEmail()"
+          >
+          </app-input>
         </div>
         <div class="col">
-          <app-custom-input 
-          [inputIcon]="'letter'" 
-          [type]="'email'" 
-          [(value)]="repeatEmail"  
-          [inputStyle]="emailInputStyle" 
-          [disabled]="false" 
-          [inputPlaceholder]="'Potwórz e-mail'" 
-          [inputLabel]="''" 
-          [inputHint]="''"
-          (input)="validateEmail()">
-        </app-custom-input>
+          <app-input
+            [inputIcon]="'letter'"
+            [type]="'email'"
+            [(value)]="repeatEmail"
+            [inputStyle]="emailInputStyle"
+            [disabled]="false"
+            [inputPlaceholder]="'Potwórz e-mail'"
+            [inputLabel]="''"
+            [inputHint]="''"
+            (input)="validateEmail()"
+          >
+          </app-input>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <app-custom-input 
-            [inputIcon]="'lock'" 
-            [type]="'password'" 
-            [(value)]="register.password"  
-            [inputStyle]="passwordInputStyle" 
-            [disabled]="false" 
-            [inputPlaceholder]="'Hasło'" 
-            [inputLabel]="''" 
-            [inputHint]="passwordInputError">
-          </app-custom-input>
+          <app-input
+            [inputIcon]="'lock'"
+            [type]="'password'"
+            [(value)]="register.password"
+            [inputStyle]="passwordInputStyle"
+            [disabled]="false"
+            [inputPlaceholder]="'Hasło'"
+            [inputLabel]="''"
+            [inputHint]="passwordInputError"
+          >
+          </app-input>
         </div>
         <div class="col">
-          <app-custom-input 
-            [inputIcon]="'lock'" 
-            [type]="'password'" 
-            [(value)]="repeatPassword"  
-            [inputStyle]="passwordInputStyle" 
-            [disabled]="false" 
-            [inputPlaceholder]="'Potwórz hasło'" 
-            [inputLabel]="''" 
-            [inputHint]="''">
-          </app-custom-input>
+          <app-input
+            [inputIcon]="'lock'"
+            [type]="'password'"
+            [(value)]="repeatPassword"
+            [inputStyle]="passwordInputStyle"
+            [disabled]="false"
+            [inputPlaceholder]="'Potwórz hasło'"
+            [inputLabel]="''"
+            [inputHint]="''"
+          >
+          </app-input>
         </div>
       </div>
-  
-     
-      
     </div>
-   <div class="buttons">
-    <app-custom-button type="big" (click)="onSubmit()">Rejestracja</app-custom-button>
-   </div>
+    <div class="buttons">
+      <app-button size="big" (click)="onSubmit()">Rejestracja</app-button>
+    </div>
   </div>
-  <div class="footer">Masz konto? <a class="gradient-text" (click)="login()">Zaloguj się</a></div>
+  <div class="footer">
+    Masz konto? <a class="gradient-text" (click)="login()">Zaloguj się</a>
+  </div>
 </div>
 <div *ngIf="successRegistration" class="success-message">
   <h1>Zarejestrowano pomyślnie!</h1>
-  <p>Przed zalogowaniem sprawdź skrzynkę pocztową i aktywuj email linkiem aktywacyjnym!</p>
-  <img class="icon" src="assets/icons/toast-success.svg">
-  <a class="gradient-text" (click)="login()" style="font-weight: 700; margin-top: 20px">Przejdź do logowania</a>
+  <p>
+    Przed zalogowaniem sprawdź skrzynkę pocztową i aktywuj email linkiem
+    aktywacyjnym!
+  </p>
+  <img class="icon" src="assets/icons/toast-success.svg" />
+  <a
+    class="gradient-text"
+    (click)="login()"
+    style="font-weight: 700; margin-top: 20px"
+    >Przejdź do logowania</a
+  >
 </div>

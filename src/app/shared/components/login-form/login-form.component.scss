@@ -1,142 +1,149 @@
-.login-form{
-    display:flex;
-    flex-direction: column;
-    position: relative;
-    width:68.19444444444444%;
-    height:610px;
-    margin:auto;
-    margin-top: 21.09375%;
-    gap: 48px;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 68.19444444444444%;
+  height: 610px;
+  margin: auto;
+  margin-top: 21.09375%;
+  gap: 48px;
 }
 
 .bottom-text {
-    font-weight: 600;
+  font-weight: 600;
 }
 
-.logo{
-    position: relative;
-    width:32px;
-    height:32px;
-    margin-top: 48px;
-    margin-left: 48px;
-    background-image: url("../../../../assets/images/logo.svg"); 
-    background-size: cover;
+.logo {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin-top: 48px;
+  margin-left: 48px;
+  background-image: url("../../../../assets/images/logo.svg");
+  background-size: cover;
 }
 
-.footer{
-    position: absolute;
-    left:3.33333333333333%;
-    bottom: 4.6875%;
-    color:#686B6E;
-    font-size: 14pt;
-    font-weight:600;
-    cursor: pointer;
+.footer {
+  position: absolute;
+  left: 3.33333333333333%;
+  bottom: 4.6875%;
+  color: #686b6e;
+  font-size: 14pt;
+  font-weight: 600;
+  cursor: pointer;
 }
-
 
 .gradient-text {
-    background: var(--gradients-blue-green-500, linear-gradient(45deg, #82DBF7 0%, #B6F09C 100%));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .gradient-title {
-    background: var(--gradients-day-blue-blue-green-500, linear-gradient(45deg, #4D62E5 0%, #87DDEE 45.31%, #B6F09C 100%));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: Plus Jakarta Sans;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 44px;
-  }
-
-  .title{
-    align-self: stretch;
-    color: var(--noble-black-0, #FFF);
-    font-family: Plus Jakarta Sans;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 44px;
+  background: var(
+    --gradients-blue-green-500,
+    linear-gradient(45deg, #82dbf7 0%, #b6f09c 100%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.description{
-    align-self: stretch;
-    color: var(--noble-black-300, #9B9C9E);
-    font-family: Plus Jakarta Sans;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 28px;
-    letter-spacing: 0.15px;
+.gradient-title {
+  background: var(
+    --gradients-day-blue-blue-green-500,
+    linear-gradient(45deg, #4d62e5 0%, #87ddee 45.31%, #b6f09c 100%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Plus Jakarta Sans;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 44px;
 }
 
-.buttons{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-self: stretch;
+.title {
+  align-self: stretch;
+  color: var(--noble-black-0, #fff);
+  font-family: Plus Jakarta Sans;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 44px;
 }
 
-.bottom{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
-    color: var(--noble-black-200, #CDCECF);
-    font-family: Plus Jakarta Sans;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0.15px;
+.description {
+  align-self: stretch;
+  color: var(--noble-black-300, #9b9c9e);
+  font-family: Plus Jakarta Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0.15px;
 }
 
-.form-inputs{
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  color: var(--noble-black-200, #cdcecf);
+  font-family: Plus Jakarta Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 @media (max-width: 1000px) {
-    .footer {
-        font-size: 13pt; /* Dostosuj wielkość czcionki do mniejszej szerokości ekranu */
-    }
+  .footer {
+    font-size: 13pt; /* Dostosuj wielkość czcionki do mniejszej szerokości ekranu */
+  }
 }
 
 @media (max-width: 900px) {
-    .footer {
-        font-size: 12pt; /* Dostosuj wielkość czcionki do mniejszej szerokości ekranu */
-    }
+  .footer {
+    font-size: 12pt; /* Dostosuj wielkość czcionki do mniejszej szerokości ekranu */
+  }
 
-    .right{
-        display: none;
-    }
+  .right {
+    display: none;
+  }
 
-    .left{
-        width: 100%;
-    }
+  .left {
+    width: 100%;
+  }
 }
 
 @media (max-width: 500px) {
-    .login-form{
-        width: 90%;
-    }
-    .logo{margin-left:5%;}
+  .login-form {
+    width: 90%;
+  }
+  .logo {
+    margin-left: 5%;
+  }
 }
 
 @media (max-height: 806px) {
-    .login-form{
-        gap:36px;
-        margin-top: 11%;
-    }
+  .login-form {
+    gap: 36px;
+    margin-top: 11%;
+  }
 }
 @media (max-height: 685px) {
-    .login-form{
-        gap:24px;
-        margin-top: 5%;
-    }
+  .login-form {
+    gap: 24px;
+    margin-top: 5%;
+  }
 }
